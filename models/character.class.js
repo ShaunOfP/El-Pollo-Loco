@@ -38,7 +38,7 @@ class Character extends MovableObject {
     ];
     world;
     walking_sound = new Audio('audio/walking.mp3');
-    offsetY = 0; //"Luft" in der Hitbox, vom Charakter zum Rand der Hitbox
+    offsetY = 110; //"Luft" in der Hitbox, vom Charakter zum Rand der Hitbox
 
     constructor() {
         super().loadImage('../img/2_character_pepe/2_walk/W-21.png');
