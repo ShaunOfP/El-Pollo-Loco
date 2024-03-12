@@ -84,10 +84,6 @@ class World {
                     }
                 });
             }
-
-            if (this.collectableObjects.length != 0) {
-                this.collectableObjects.forEach
-            }
         });
 
         //zum aufheben von SalsaFalschen auf dem Boden
@@ -95,8 +91,18 @@ class World {
             if (this.character.isColliding(bottle)) {
                 console.log('Bottles total: ', this.bottleObjects.length);
                 this.bottleObjects.push(bottle);
-                //bottle entfernen
-                // this.ctx.bottle.clearRect(bottle.x, bottle.y, bottle.width, bottle.height);
+                //richtigen bottle entfernen
+                this.level.bottles.splice(0, 1);
+                this.draw();
+            }
+        });
+
+        this.level.coins.forEach(coin => {
+            if (this.character.isColliding(coin)){
+                console.log('Coin added');
+                this.collectableObjects.push(coin);
+                this.level.coins.splice(0, 1);
+                this.draw();
             }
         });
     }
@@ -142,7 +148,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        // mo.drawFrame(this.ctx); Hitbox einzeichnen
+        mo.drawFrame(this.ctx); //Hitbox einzeichnen
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
