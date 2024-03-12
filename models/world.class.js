@@ -43,10 +43,10 @@ class World {
 
 
     checkThrowObjects() {
-        //einfügen dass array mit bottles nicht leer sein darf
-        if (this.keyboard.THROW) {
+        if (this.keyboard.THROW && this.bottleObjects.length != 0) {
             let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70);
             this.throwableObjects.push(bottle);
+            this.bottleObjects.splice(0, 1);
         }
     }
 
@@ -68,7 +68,7 @@ class World {
             if (this.throwableObjects.length != 0) {
                 this.throwableObjects.forEach(object => {
                     //object entfernen, wenn es das canvas verlässt
-                    if (object.y >= 355){
+                    if (object.y >= 400) {
                         this.throwableObjects.splice(object);
                     }
 
@@ -76,12 +76,17 @@ class World {
                     if (object.isColliding(enemy)) {
                         if (enemy instanceof Endboss) {
                             //hp abziehen vom Boss
+                            console.log('Boss hit');
                         } else {
                             console.log(enemy, ' hit with ', object);
                         }
-                        // this.salsaBottle.splash();
+                        this.salsaBottle.splash();
                     }
                 });
+            }
+
+            if (this.collectableObjects.length != 0) {
+                this.collectableObjects.forEach
             }
         });
 
@@ -113,8 +118,8 @@ class World {
 
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
-        this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObjects);
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
 

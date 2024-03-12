@@ -15,7 +15,7 @@ function toggleFullscreen() {
     let game = document.getElementById('gameContainer');
     let shrinkBtn = document.getElementById('toggleBtn');
 
-    if (counter % 2){
+    if (counter % 2) {
         if (game.requestFullScreen) {
             game.requestFullscreen();
             shrinkBtn.src = '/img/icons/go-normalscreen.svg';
@@ -36,7 +36,6 @@ function toggleFullscreen() {
         shrinkBtn.src = '/img/icons/go-fullscreen.svg';
         shrinkBtn.style.filter = 'invert(0%) sepia(6%) saturate(2850%) hue-rotate(60deg) brightness(93%) contrast(104%)';
     }
-    
 }
 
 
@@ -59,6 +58,7 @@ window.addEventListener('keydown', (event) => {
             break;
         case ('KeyD'):
             keyboard.THROW = true;
+            keypress = true;
             break;
         default:
             break;

@@ -5,7 +5,7 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
-    offsetY = 10; //"Luft" in der Hitbox, vom Charakter zum Rand der Hitbox
+    offsetY = 50; //"Luft" in der Hitbox, vom Charakter zum Rand der Hitbox
 
     applyGravity() {
         setInterval(() => {
@@ -57,18 +57,11 @@ class MovableObject extends DrawableObject {
 
 
     isColliding(obj) {
-        // return this.x + this.width > 
-        // obj.x && this.y + this.height > 
-        // obj.y && this.x < obj.x && this.y <
-        // obj.y + obj.height;
-
-        //(this.x + this.width)koordinate rechts unten
         return (this.x + this.width) >=
-        //gegner x && character x <= (gegner x + breite)
-        obj.x && this.x <= (obj.x + obj.width) &&
+            obj.x && this.x <= (obj.x + obj.width) &&
             (this.y + this.offsetY + this.height) >= obj.y &&
             (this.y + this.offsetY) <= (obj.y + obj.height);
-        // obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+        // // obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
     }
 
 
