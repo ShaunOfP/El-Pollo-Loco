@@ -64,15 +64,18 @@ class World {
                 }
             }
 
+            //über geworfene objekte iterieren
             if (this.throwableObjects.length != 0) {
                 this.throwableObjects.forEach(object => {
+                    //object entfernen, wenn es das canvas verlässt
                     if (object.y >= 355){
                         this.throwableObjects.splice(object);
                     }
 
+                    //überprüfen, ob bottle mit enemy kollidiert
                     if (object.isColliding(enemy)) {
                         if (enemy instanceof Endboss) {
-
+                            //hp abziehen vom Boss
                         } else {
                             console.log(enemy, ' hit with ', object);
                         }
@@ -82,6 +85,7 @@ class World {
             }
         });
 
+        //zum aufheben von SalsaFalschen auf dem Boden
         this.level.bottles.forEach(bottle => {
             if (this.character.isColliding(bottle)) {
                 console.log('Bottles total: ', this.bottleObjects.length);
@@ -90,12 +94,6 @@ class World {
                 // this.ctx.bottle.clearRect(bottle.x, bottle.y, bottle.width, bottle.height);
             }
         });
-
-        // this.level.collectableObjects.forEach((colletable) => {
-        //     if (this.character.isColliding(colletable)){
-        //         // einsammeln von objekten
-        //     }
-        // });
     }
 
 
