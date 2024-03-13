@@ -4,6 +4,7 @@ class CollectableObject extends MovableObject {
         '../img/8_coin/coin_2.png'
     ];
     offsetY = 0;
+    offsetX = 0;
     
     constructor(x){
         super().loadImage('../img/8_coin/coin_1.png');

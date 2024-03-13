@@ -4,6 +4,7 @@ class Bottle extends MovableObject {
         '../img/6_salsa_bottle/2_salsa_bottle_on_ground.png',
     ];
     offsetY = 0;
+    offsetX = 0;
 
     constructor(x) {
         super().loadImage('../img/6_salsa_bottle/1_salsa_bottle_on_ground.png');
