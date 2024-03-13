@@ -5,17 +5,17 @@ class Bottle extends MovableObject {
     ];
     offsetY = 0;
 
-    constructor(){
+    constructor(x) {
         super().loadImage('../img/6_salsa_bottle/1_salsa_bottle_on_ground.png');
         this.loadImages(this.IMAGES_BOTTLE);
-        this.x = 400 + Math.random() * 1500;
+        this.x = x;
         this.y = 350;
         this.width = 80;
         this.height = 80;
         this.animate();
     }
 
-    animate(){
+    animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_BOTTLE);
         }, 500);

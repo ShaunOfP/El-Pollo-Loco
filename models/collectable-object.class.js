@@ -5,10 +5,10 @@ class CollectableObject extends MovableObject {
     ];
     offsetY = 0;
     
-    constructor(){
+    constructor(x){
         super().loadImage('../img/8_coin/coin_1.png');
         this.loadImages(this.IMAGES_COIN);
-        this.x = 400 + Math.random() * 1500;
+        this.x = x;
         this.y = 200 - Math.random() * 150;
         this.width = 200;
         this.height = 200;

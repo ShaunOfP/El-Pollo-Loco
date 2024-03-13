@@ -37,16 +37,16 @@ const level1 = new Level([
     new BackgroundObject('../img/5_background/layers/1_first_layer/2.png', 719*3)
 ],
 [
-    new CollectableObject(),
-    new CollectableObject(),
-    new CollectableObject(),
-    new CollectableObject(),
-    new CollectableObject()
+    new CollectableObject(300 + Math.random() * 100),
+    new CollectableObject(600 + Math.random() * 250),
+    new CollectableObject(900 + Math.random() * 300),
+    new CollectableObject(1100 + Math.random() * 350),
+    new CollectableObject(1400 + Math.random() * 400)
 ],
 [
-    new Bottle(),
-    new Bottle(),
-    new Bottle(),
-    new Bottle(),
-    new Bottle()
+    new Bottle(400 + Math.random() * 100),
+    new Bottle(600 + Math.random() * 300),
+    new Bottle(900 + Math.random() * 300),
+    new Bottle(1200 + Math.random() * 300),
+    new Bottle(1500 + Math.random() * 300)
 ]);
