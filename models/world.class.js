@@ -89,9 +89,8 @@ class World {
         //zum aufheben von SalsaFalschen auf dem Boden
         this.level.bottles.forEach(bottle => {
             if (this.character.isColliding(bottle)) {
-                console.log('Bottles total: ', this.bottleObjects.length);
                 this.bottleObjects.push(bottle);
-                //richtigen bottle entfernen
+                this.bottleBar.setPercentage(this.bottleObjects.length * 20);
                 this.level.bottles.splice(0, 1);
                 this.draw();
             }
