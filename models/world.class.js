@@ -48,7 +48,7 @@ class World {
             this.throwableObjects.push(bottle);
             this.bottleObjects.splice(0, 1);
             console.log("true");
-            setTimeout(() => {}, 1000);
+            setTimeout(() => { }, 1000);
         }
     }
 
@@ -96,7 +96,7 @@ class World {
         });
 
         this.level.coins.forEach(coin => {
-            if (this.character.isColliding(coin)){
+            if (this.character.isColliding(coin)) {
                 this.collectableObjects.push(coin);
                 this.coinBar.setPercentage(this.collectableObjects.length * 20);
                 this.level.coins.splice(0, 1);
@@ -168,20 +168,22 @@ class World {
     }
 
 
-    gameOver(){
-        this.clearAllIntervals();
-        this.stopAllSounds();
+    gameOver() {
+        setTimeout(() => {
+            this.clearAllIntervals();
+            this.stopAllSounds();
+        }, 1500);
     }
 
 
-    clearAllIntervals(){
-        for(let i = 1; i < 9999; i++){
+    clearAllIntervals() {
+        for (let i = 1; i < 9999; i++) {
             window.clearInterval(i);
         }
     }
 
 
-    stopAllSounds(){
+    stopAllSounds() {
         this.character.walking_sound.pause();
         this.character.hurt_sound.pause();
         this.character.death_sound.pause();
