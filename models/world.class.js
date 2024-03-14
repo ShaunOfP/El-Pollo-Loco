@@ -64,7 +64,7 @@ class World {
                 }
             }
 
-            //über geworfene objekte iterieren
+            
             if (this.throwableObjects.length != 0) {
                 this.throwableObjects.forEach(object => {
                     //object entfernen, wenn es das canvas verlässt
@@ -72,7 +72,6 @@ class World {
                         this.throwableObjects.splice(object);
                     }
 
-                    //überprüfen, ob bottle mit enemy kollidiert
                     if (object.isColliding(enemy)) {
                         if (enemy instanceof Endboss) {
                             //hp abziehen vom Boss
@@ -86,7 +85,7 @@ class World {
             }
         });
 
-        //zum aufheben von SalsaFalschen auf dem Boden
+        
         this.level.bottles.forEach(bottle => {
             if (this.character.isColliding(bottle)) {
                 this.bottleObjects.push(bottle);
@@ -98,8 +97,8 @@ class World {
 
         this.level.coins.forEach(coin => {
             if (this.character.isColliding(coin)){
-                console.log('Coin added');
                 this.collectableObjects.push(coin);
+                this.coinBar.setPercentage(this.collectableObjects.length * 20);
                 this.level.coins.splice(0, 1);
                 this.draw();
             }
