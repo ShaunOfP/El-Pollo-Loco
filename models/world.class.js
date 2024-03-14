@@ -169,8 +169,8 @@ class World {
 
 
     gameOver(){
-        clearAllIntervals();
-        stopAllSounds();
+        this.clearAllIntervals();
+        this.stopAllSounds();
     }
 
 
