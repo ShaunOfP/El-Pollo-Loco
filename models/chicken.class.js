@@ -8,8 +8,13 @@ class Chicken extends MovableObject {
         '../img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
     ];
     chicken_sound = new Audio('audio/chicken.mp3');
-    offsetY = 0;
-    offsetX = 0;
+    offset = {
+        top: 0,
+        left: 40,
+        right: 0,
+        bottom: 0
+    }
+
 
     constructor() {
         super().loadImage('../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');

@@ -3,8 +3,12 @@ class CollectableObject extends MovableObject {
         '../img/8_coin/coin_1.png',
         '../img/8_coin/coin_2.png'
     ];
-    offsetY = 0;
-    offsetX = 0;
+    offset = {
+        top: 50,
+        left: 150,
+        right: -160,
+        bottom: -200
+    }
     
     constructor(x){
         super().loadImage('../img/8_coin/coin_1.png');

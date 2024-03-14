@@ -6,6 +6,12 @@ class DrawableObject{
     y = 180;
     height = 200;
     width = 150;
+    offset = {
+        top: 0,
+        left: 0,
+        right: 0,  //doppelter negativer wert von left (um viereck zu machen)
+        bottom: 0  //doppelter negativer wert von top (um viereck zu machen)
+    }
 
 
     loadImage(path) {
@@ -25,6 +31,14 @@ class DrawableObject{
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
             ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
+
+        if (this instanceof Character || this instanceof Chicken || this instanceof ChickenSmall || this instanceof Endboss || this instanceof CollectableObject || this instanceof Bottle) {
+            ctx.beginPath();
+            ctx.lineWidth = '5';
+            ctx.strokeStyle = 'red';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width + this.offset.right, this.height + this.offset.bottom);
             ctx.stroke();
         }
     }
