@@ -47,6 +47,8 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70);
             this.throwableObjects.push(bottle);
             this.bottleObjects.splice(0, 1);
+            console.log("true");
+            setTimeout(() => {}, 1000);
         }
     }
 
@@ -64,7 +66,6 @@ class World {
                 }
             }
 
-            
             if (this.throwableObjects.length != 0) {
                 this.throwableObjects.forEach(object => {
                     //object entfernen, wenn es das canvas verlässt
@@ -77,7 +78,7 @@ class World {
                             //hp abziehen vom Boss
                             console.log('Boss hit');
                         } else {
-                            console.log(enemy, ' hit with ', object);
+                            console.log(enemy, ' hit with bottle');
                         }
                         this.salsaBottle.splash();
                     }
@@ -85,7 +86,6 @@ class World {
             }
         });
 
-        
         this.level.bottles.forEach(bottle => {
             if (this.character.isColliding(bottle)) {
                 this.bottleObjects.push(bottle);
@@ -169,6 +169,22 @@ class World {
 
 
     gameOver(){
-        
+        clearAllIntervals();
+        stopAllSounds();
+    }
+
+
+    clearAllIntervals(){
+        for(let i = 1; i < 9999; i++){
+            window.clearInterval(i);
+        }
+    }
+
+
+    stopAllSounds(){
+        this.character.walking_sound.pause();
+        this.character.hurt_sound.pause();
+        this.character.death_sound.pause();
+        //alle adneren sounds
     }
 }

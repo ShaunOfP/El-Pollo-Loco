@@ -58,7 +58,6 @@ window.addEventListener('keydown', (event) => {
             break;
         case ('KeyD'):
             keyboard.THROW = true;
-            keypress = true;
             break;
         default:
             break;
