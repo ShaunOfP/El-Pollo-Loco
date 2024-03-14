@@ -38,6 +38,8 @@ class Character extends MovableObject {
     ];
     world;
     walking_sound = new Audio('audio/walking.mp3');
+    hurt_sound = new Audio('audio/hurt.mp3');
+    death_sound = new Audio('audio/dead.mp3');
     offset = { //Luft in der Htbox um den Charakter rum
         top: 80,
         left: 15,
@@ -78,11 +80,15 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
+            this.hurt_sound.pause();
+            this.death_sound.pause();
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                this.death_sound.play();
                 this.world.gameOver();
             } else if (this.isHurt()){
                 this.playAnimation(this.IMAGES_HURT);
+                this.hurt_sound.play();
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else {

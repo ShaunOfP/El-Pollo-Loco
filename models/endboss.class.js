@@ -3,7 +3,6 @@ class Endboss extends MovableObject {
     width = 300;
     y = -35;
     hadFirstContact = false;
-
     IMAGES_WALKING = [
         '../img/4_enemie_boss_chicken/1_walk/G1.png',
         '../img/4_enemie_boss_chicken/1_walk/G2.png',
@@ -40,6 +39,7 @@ class Endboss extends MovableObject {
         '../img/4_enemie_boss_chicken/5_dead/G25.png',
         '../img/4_enemie_boss_chicken/5_dead/G26.png',
     ];
+    boss_sound = new Audio('audio/boss-chicken.mp3');
 
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);

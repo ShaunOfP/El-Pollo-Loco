@@ -1,7 +1,8 @@
 let counter = 0;
+let game_Theme = new Audio('../audio/main-theme.mp3');
 
 function init(){
-    //music startscreen
+    game_Theme.play();
 }
 
 
@@ -14,9 +15,9 @@ function toggleAudio(element){
     counter++;
     if (counter % 2){
         element.src = "/img/icons/music-muted.svg";
-        //stop music
+        game_Theme.pause();
     } else {
         element.src = "/img/icons/music-toggle.svg";
-        //play music
+        game_Theme.play();
     }
 }
