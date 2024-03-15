@@ -40,7 +40,7 @@ class Character extends MovableObject {
     walking_sound = new Audio('audio/walking.mp3');
     hurt_sound = new Audio('audio/hurt.mp3');
     death_sound = new Audio('audio/dead.mp3');
-    offset = { //Luft in der Htbox um den Charakter rum
+    offset = { //Luft in der Hitbox um den Charakter rum
         top: 80,
         left: 15,
         right: -30,
