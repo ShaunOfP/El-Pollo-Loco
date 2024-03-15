@@ -6,7 +6,6 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
 
-
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -84,5 +83,10 @@ class MovableObject extends DrawableObject {
 
     isDead() {
         return this.energy == 0;
+    }
+
+
+    isAttacking(){
+        
     }
 }

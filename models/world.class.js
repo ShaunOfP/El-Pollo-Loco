@@ -1,5 +1,6 @@
 class World {
     character = new Character();
+    endboss = new Endboss();
     level = level1;
     canvas;
     ctx;
@@ -47,7 +48,7 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70);
             this.throwableObjects.push(bottle);
             this.bottleObjects.splice(0, 1);
-            console.log("true");
+            this.bottleBar.setPercentage(this.bottleObjects.length * 20);
             setTimeout(() => { }, 1000);
         }
     }
@@ -77,10 +78,12 @@ class World {
                         if (enemy instanceof Endboss) {
                             //hp abziehen vom Boss
                             console.log('Boss hit');
+                            this.endboss.hit(50);
+                            this.salsaBottle.splash();
                         } else {
                             console.log(enemy, ' hit with bottle');
                         }
-                        this.salsaBottle.splash();
+                        // window.clearInterval(26);
                     }
                 });
             }

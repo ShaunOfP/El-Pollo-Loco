@@ -40,6 +40,5 @@ class ThrowableObject extends MovableObject {
 
     splash() {
         this.playAnimation(this.IMAGES_SPLASH);
-        this.speedY = 0;
     }
 }
