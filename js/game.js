@@ -18,22 +18,22 @@ function toggleFullscreen() {
     if (counter % 2) {
         if (game.requestFullScreen) {
             game.requestFullscreen();
-            shrinkBtn.src = '/img/icons/go-normalscreen.svg';
+            shrinkBtn.src = './img/icons/go-normalscreen.svg';
             shrinkBtn.style.filter = 'invert(73%) sepia(19%) saturate(2522%) hue-rotate(357deg) brightness(103%) contrast(102%)';
         }
         else if (game.webkitRequestFullScreen) {
             game.webkitRequestFullscreen();
-            shrinkBtn.src = '/img/icons/go-normalscreen.svg';
+            shrinkBtn.src = './img/icons/go-normalscreen.svg';
             shrinkBtn.style.filter = 'invert(73%) sepia(19%) saturate(2522%) hue-rotate(357deg) brightness(103%) contrast(102%)';
         }
         else if (game.mozRequestFullScreen) {
             game.mozRequestFullscreen();
-            shrinkBtn.src = '/img/icons/go-normalscreen.svg';
+            shrinkBtn.src = './img/icons/go-normalscreen.svg';
             shrinkBtn.style.filter = 'invert(73%) sepia(19%) saturate(2522%) hue-rotate(357deg) brightness(103%) contrast(102%)';
         }
     } else {
         document.exitFullscreen();
-        shrinkBtn.src = '/img/icons/go-fullscreen.svg';
+        shrinkBtn.src = './img/icons/go-fullscreen.svg';
         shrinkBtn.style.filter = 'invert(0%) sepia(6%) saturate(2850%) hue-rotate(60deg) brightness(93%) contrast(104%)';
     }
 }

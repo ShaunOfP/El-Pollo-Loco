@@ -7,7 +7,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-image: url('/img/game_background/background.png');
+    background-image: url('img/game_background/background.png');
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
