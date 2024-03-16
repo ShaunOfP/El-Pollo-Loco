@@ -57,17 +57,24 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                if (this.character.isCollidingOnTop(enemy) && this.character.y < 180) {
-                    console.log('Kopf kaputt');
-                    //huhn kaputt
-                } else {
-                    if (enemy instanceof Chicken) {
-                        this.character.hit(10);
-                        this.statusBar.setPercentage(this.character.energy);
+                if (enemy instanceof Chicken) {
+                    if (this.character.isCollidingOnTop(enemy) && this.character.y < 180) {
+                        enemy.dead = true;
+                    } else {
+                        if (enemy.dead == false) {
+                            this.character.hit(10);
+                            this.statusBar.setPercentage(this.character.energy);
+                        }
                     }
-                    if (enemy instanceof ChickenSmall) {
-                        this.character.hit(5);
-                        this.statusBar.setPercentage(this.character.energy);
+                }
+                if (enemy instanceof ChickenSmall) {
+                    if (this.character.isCollidingOnTop(enemy) && this.character.y < 180) {
+                        enemy.dead = true;
+                    } else {
+                        if (enemy.dead == false) {
+                            this.character.hit(5);
+                            this.statusBar.setPercentage(this.character.energy);
+                        }
                     }
                 }
             }

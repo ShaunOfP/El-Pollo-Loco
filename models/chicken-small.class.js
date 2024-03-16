@@ -1,4 +1,4 @@
-class ChickenSmall extends MovableObject{
+class ChickenSmall extends MovableObject {
     y = 375;
     height = 40;
     width = 60;
@@ -16,6 +16,7 @@ class ChickenSmall extends MovableObject{
         right: 0,
         bottom: 0
     }
+    dead = false;
 
 
     constructor() {
@@ -35,7 +36,12 @@ class ChickenSmall extends MovableObject{
         }, 1000 / 60);
 
         setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
+            if (this.dead == true) {
+                this.speed = 0;
+                this.playAnimation(this.IMAGES_DEAD);
+            } else {
+                this.playAnimation(this.IMAGES_WALKING);
+            }
         }, 100);
     }
 }
