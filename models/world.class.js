@@ -43,6 +43,9 @@ class World {
     }
 
 
+    /**
+     * checks for bottles and updates bottle bar
+     */
     checkThrowObjects() {
         if (this.keyboard.THROW && this.bottleObjects.length != 0) {
             let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70);
@@ -54,6 +57,9 @@ class World {
     }
 
 
+    /**
+     * looks for every kind of collision and the resulting action
+     */
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
@@ -88,7 +94,6 @@ class World {
 
                     if (object.isColliding(enemy)) {
                         if (enemy instanceof Endboss) {
-                            //hp abziehen vom Boss
                             console.log('Boss hit');
                             this.endboss.hit(50);
                             this.salsaBottle.splash();
@@ -121,6 +126,9 @@ class World {
     }
 
 
+    /**
+     * Draws the objects on the canvas
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
@@ -150,6 +158,10 @@ class World {
     }
 
 
+    /**
+     * this gives a single object from the given array to the addToMap function
+     * @param {array} objects 
+     */
     addObjectsToMap(objects) {
         objects.forEach(object => {
             this.addToMap(object);
@@ -157,6 +169,10 @@ class World {
     }
 
 
+    /**
+     * this gives a single movable object to the draw function and checks if it should be mirrored or not
+     * @param {object} mo 
+     */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
@@ -169,6 +185,10 @@ class World {
     }
 
 
+    /**
+     * Mirrors an image/object
+     * @param {object} mo 
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -177,12 +197,19 @@ class World {
     }
 
 
+    /**
+     * Flips image/object back to the normal position
+     * @param {object} mo 
+     */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
 
 
+    /**
+     * used to stop all sounds and intervals after a game over
+     */
     gameOver() {
         setTimeout(() => {
             this.clearAllIntervals();
@@ -191,6 +218,9 @@ class World {
     }
 
 
+    /**
+     * used to clear all intervals
+     */
     clearAllIntervals() {
         for (let i = 1; i < 9999; i++) {
             window.clearInterval(i);
@@ -198,6 +228,9 @@ class World {
     }
 
 
+    /**
+     * used to stop all sounds
+     */
     stopAllSounds() {
         this.character.walking_sound.pause();
         this.character.hurt_sound.pause();
