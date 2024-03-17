@@ -24,6 +24,10 @@ class World {
     }
 
 
+    /**
+     * This searches for an object in the level1.js
+     * @returns object of Endboss for level1
+     */
     setEndboss(){
         for (const enemy of level1.enemies){
             if (enemy instanceof Endboss){
@@ -34,10 +38,11 @@ class World {
 
 
     /**
-     * Gibt die World dem Character zur verfügung, damit Charcter auf World.class und seine Funktionen zugreifen kann
+     * Allows the character and the endboss classes to use functions from the world class
      */
     setWorld() {
         this.character.world = this;
+        this.endboss.world = this;
     }
 
 
@@ -91,6 +96,11 @@ class World {
                             this.statusBar.setPercentage(this.character.energy);
                         }
                     }
+                }
+                if (enemy instanceof Endboss){
+                    this.endboss.isAttacking = true;
+                    this.character.hit(15);
+                    this.statusBar.setPercentage(this.character.energy);
                 }
             }
 

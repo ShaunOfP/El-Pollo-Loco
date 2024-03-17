@@ -2,6 +2,7 @@ class Endboss extends MovableObject {
     height = 500;
     width = 300;
     y = -35;
+    speed = 25;
     hadFirstContact = false;
     IMAGES_WALKING = [
         './img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -40,14 +41,21 @@ class Endboss extends MovableObject {
         './img/4_enemie_boss_chicken/5_dead/G26.png',
     ];
     boss_sound = new Audio('audio/boss-chicken.mp3');
+    isAttacking = false;
+    offset = { //Luft in der Hitbox um den Charakter rum
+        top: 0,
+        left: 20,
+        right: 0,
+        bottom: 0
+    }
 
     constructor() {
         super().loadImage('./img/4_enemie_boss_chicken/1_walk/G1.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_ALERT);
-        this.loadImages(this.IMAGES_ATTACKING); //muss animiert werden
-        this.loadImages(this.IMAGES_HURT); //muss animiert werden
-        this.loadImages(this.IMAGES_DEAD); //muss animiert werden
+        this.loadImages(this.IMAGES_ATTACKING);
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DEAD);
         this.x = 2500;
         this.animate();
     }
@@ -59,15 +67,23 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_ALERT);
             } else {
                 if (this.isDead()){
-                    console.log('boss dead');
                     this.playAnimation(this.IMAGES_DEAD);
+                    this.world.gameOver();
                     //victory screen
                 } else if (this.isHurt()) {
                     this.playAnimation(this.IMAGES_HURT);
-                } else if (this.isAttacking()) {
+                } else if (this.isAttacking == true) {
                     this.playAnimation(this.IMAGES_ATTACKING);
+                    setTimeout(() => {
+                        this.isAttacking = false;
+                    }, 200);
                 } else {
                     this.playAnimation(this.IMAGES_WALKING);
+                    if (world.character.x < this.x && this.hadFirstContact){
+                        this.moveLeft();
+                    } else if (world.character.x > this.x){
+                        this.moveRight(); // läuft noch nicht nach rechts
+                    }
                 }
             }
 
