@@ -1,6 +1,6 @@
 class World {
     character = new Character();
-    endboss = new Endboss();
+    endboss = this.setEndboss();
     level = level1;
     canvas;
     ctx;
@@ -21,6 +21,15 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+    }
+
+
+    setEndboss(){
+        for (const enemy of level1.enemies){
+            if (enemy instanceof Endboss){
+                return enemy;
+            }
+        }
     }
 
 
