@@ -13,7 +13,7 @@ class ThrowableObject extends MovableObject {
         './img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png',
         './img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
-
+    splash = false;
 
     constructor(x, y) {
         super().loadImage('./img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
@@ -28,17 +28,35 @@ class ThrowableObject extends MovableObject {
 
 
     throw() {
-        this.speedY = 30
+        this.speedY = 30;
         this.applyGravity();
 
         setInterval(() => {
-            this.playAnimation(this.IMAGES_TO);
-            this.x += 10;
+            if (this.splash == false) {
+                this.playAnimation(this.IMAGES_TO);
+                this.x += 10;
+            } else if (this.splash == true) {
+                this.playAnimation(this.IMAGES_SPLASH);
+                setTimeout(() => {
+                    this.splash = false;
+                }, 500);
+            }
         }, 1000 / 60);
     }
 
+    //old code
+    // throw() {
+    //     this.speedY = 30
+    //     this.applyGravity();
 
-    splash() {
-        this.playAnimation(this.IMAGES_SPLASH);
-    }
+    //     setInterval(() => {
+    //         this.playAnimation(this.IMAGES_TO);
+    //         this.x += 10;
+    //     }, 1000 / 60);
+    // }
+
+
+    // splash() {
+    //     this.playAnimation(this.IMAGES_SPLASH);
+    // }
 }

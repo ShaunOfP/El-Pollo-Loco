@@ -42,10 +42,10 @@ class Endboss extends MovableObject {
     ];
     boss_sound = new Audio('audio/boss-chicken.mp3');
     isAttacking = false;
-    offset = { //Luft in der Hitbox um den Charakter rum
+    offset = {
         top: 0,
         left: 20,
-        right: 0,
+        right: -40,
         bottom: 0
     }
 
@@ -76,7 +76,7 @@ class Endboss extends MovableObject {
                     this.playAnimation(this.IMAGES_ATTACKING);
                     setTimeout(() => {
                         this.isAttacking = false;
-                    }, 200);
+                    }, 500);
                 } else {
                     this.playAnimation(this.IMAGES_WALKING);
                     if (world.character.x < this.x && this.hadFirstContact){

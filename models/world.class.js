@@ -9,7 +9,7 @@ class World {
     statusBar = new StatusBar();
     bottleBar = new BottleBar();
     coinBar = new CoinBar();
-    salsaBottle = new ThrowableObject();
+    salsaBottle = this.level.bottles;
     throwableObjects = [];
     collectableObjects = [];
     bottleObjects = [];
@@ -66,7 +66,6 @@ class World {
             this.throwableObjects.push(bottle);
             this.bottleObjects.splice(0, 1);
             this.bottleBar.setPercentage(this.bottleObjects.length * 20);
-            setTimeout(() => { }, 1000);
         }
     }
 
@@ -106,20 +105,17 @@ class World {
 
             if (this.throwableObjects.length != 0) {
                 this.throwableObjects.forEach(object => {
-                    //object entfernen, wenn es das canvas verlässt
                     if (object.y >= 400) {
                         this.throwableObjects.splice(object);
                     }
 
                     if (object.isColliding(enemy)) {
                         if (enemy instanceof Endboss) {
-                            console.log('Boss hit');
                             this.endboss.hit(50);
-                            this.salsaBottle.splash();
+                            this.salsaBottle.splash = true;
                         } else {
                             console.log(enemy, ' hit with bottle');
                         }
-                        // window.clearInterval(26);
                     }
                 });
             }
