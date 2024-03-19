@@ -13,6 +13,7 @@ class World {
     throwableObjects = [];
     collectableObjects = [];
     bottleObjects = [];
+    throwActive = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -61,11 +62,12 @@ class World {
      * checks for bottles and updates bottle bar
      */
     checkThrowObjects() {
-        if (this.keyboard.THROW && this.bottleObjects.length != 0) {
+        if (this.keyboard.THROW && this.bottleObjects.length != 0 && !this.throwActive) {
             let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70);
             this.throwableObjects.push(bottle);
             this.bottleObjects.splice(0, 1);
             this.bottleBar.setPercentage(this.bottleObjects.length * 20);
+            this.throwActive = true;
         }
     }
 
@@ -107,6 +109,7 @@ class World {
                 this.throwableObjects.forEach(object => {
                     if (object.y >= 400) {
                         this.throwableObjects.splice(object);
+                        this.throwActive = false;
                     }
 
                     if (object.isColliding(enemy)) {
@@ -229,6 +232,7 @@ class World {
         setTimeout(() => {
             this.clearAllIntervals();
             this.stopAllSounds();
+            window.location.href = "./gameover-screen.html";
         }, 1500);
     }
 

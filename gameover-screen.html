@@ -7,8 +7,14 @@
     <script src="js/gameover-screen.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body onload="init()">
-    <canvas id="canvas" width="720" height="480"></canvas>
-    <button onclick="start()">Start</button>
+<body class="justify-content-center">
+    <div id="" class="height-480 width-720">
+        <img class="height-480 width-720" src='img/9_intro_outro_screens/game_over/game over!.png'>
+    </div>
+    <div class="width-720 d-flex justify-content-between align-items-center margin-top-5">
+        <img class="btn-hover height-30 width-30 padding-10" onclick="toggleAudio(this)" src="img/icons/music-muted.svg">
+        <button id="restartBtn" onclick="restart()">Restart</button>
+        <div class="invisible"> </div>
+    </div>
 </body>
 </html>

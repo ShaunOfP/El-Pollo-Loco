@@ -93,6 +93,6 @@ class Endboss extends MovableObject {
                 i = 0;
                 this.hadFirstContact = true;
             }
-        }, 200);
+        }, 150);
     }
 }

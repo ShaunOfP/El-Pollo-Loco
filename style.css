@@ -45,6 +45,10 @@ canvas {
     width: 720px;
 }
 
+.justify-content-center{
+    justify-content: center;
+}
+
 #startBtn {
     height: 60px;
     width: 160px;
@@ -55,7 +59,23 @@ canvas {
     font-weight: 400;
 }
 
+#restartBtn {
+    height: 60px;
+    width: 160px;
+    background-color: rgb(255, 200, 29);
+    border: 0;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
 #startBtn:hover {
+    background-color: rgb(255, 166, 0);
+    cursor: pointer;
+    scale: 1.1;
+}
+
+#restartBtn:hover {
     background-color: rgb(255, 166, 0);
     cursor: pointer;
     scale: 1.1;
@@ -93,7 +113,7 @@ canvas {
     padding: 10px;
 }
 
-#volumeBtn:hover {
+.btn-hover:hover{
     cursor: pointer;
     scale: 1.1;
 }

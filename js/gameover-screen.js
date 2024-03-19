@@ -1,8 +1,8 @@
 let counter = 0;
-let game_Theme = new Audio('./audio/main-theme.mp3');
+let game_Theme = new Audio('./audio/gameover.mp3');
 
 
-function start() {
+function restart() {
     window.location.href = "./index.html";
 }
 
