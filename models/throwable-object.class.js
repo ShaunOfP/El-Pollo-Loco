@@ -36,6 +36,9 @@ class ThrowableObject extends MovableObject {
                 this.playAnimation(this.IMAGES_TO);
                 this.x += 10;
             } else if (this.splash == true) {
+                this.speedY = 0;
+                this.applyGravity();
+                this.x = this.x;
                 this.playAnimation(this.IMAGES_SPLASH);
                 setTimeout(() => {
                     this.splash = false;
@@ -43,20 +46,4 @@ class ThrowableObject extends MovableObject {
             }
         }, 1000 / 60);
     }
-
-    //old code
-    // throw() {
-    //     this.speedY = 30
-    //     this.applyGravity();
-
-    //     setInterval(() => {
-    //         this.playAnimation(this.IMAGES_TO);
-    //         this.x += 10;
-    //     }, 1000 / 60);
-    // }
-
-
-    // splash() {
-    //     this.playAnimation(this.IMAGES_SPLASH);
-    // }
 }

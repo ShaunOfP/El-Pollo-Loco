@@ -112,7 +112,7 @@ class World {
                     if (object.isColliding(enemy)) {
                         if (enemy instanceof Endboss) {
                             this.endboss.hit(50);
-                            this.salsaBottle.splash = true;
+                            object.splash = true;
                         } else {
                             console.log(enemy, ' hit with bottle');
                         }
