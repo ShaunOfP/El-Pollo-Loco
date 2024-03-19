@@ -9,6 +9,7 @@ class World {
     statusBar = new StatusBar();
     bottleBar = new BottleBar();
     coinBar = new CoinBar();
+    bossBar = new HealthBarBoss();
     salsaBottle = this.level.bottles;
     throwableObjects = [];
     collectableObjects = [];
@@ -89,7 +90,7 @@ class World {
                     }
                 }
                 if (enemy instanceof ChickenSmall) {
-                    if (this.character.isCollidingOnTop(enemy) && this.character.y < 180) {
+                    if (this.character.isCollidingOnTop(enemy) && this.character.y > 150) {
                         enemy.dead = true;
                     } else {
                         if (enemy.dead == false) {
@@ -114,10 +115,11 @@ class World {
 
                     if (object.isColliding(enemy)) {
                         if (enemy instanceof Endboss) {
-                            this.endboss.hit(50);
+                            this.endboss.hit(25);
+                            this.bossBar.setPercentage(this.endboss.energy);
                             object.splash = true;
                         } else {
-                            console.log(enemy, ' hit with bottle');
+                            console.log(enemy, ' hit with bottle'); //soll das möglich sein?
                         }
                     }
                 });
@@ -159,9 +161,10 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.bottleBar);
         this.addToMap(this.coinBar);
+        this.addToMap(this.bossBar);
         //
         this.ctx.translate(this.camera_x, 0);
-
+ 
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.enemies);
@@ -196,7 +199,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx); //Hitbox einzeichnen
+        // mo.drawFrame(this.ctx); //Hitbox einzeichnen
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
@@ -232,7 +235,12 @@ class World {
         setTimeout(() => {
             this.clearAllIntervals();
             this.stopAllSounds();
-            window.location.href = "./gameover-screen.html";
+            if (this.character.energy == 0){
+                window.location.href = "./gameover-screen.html";
+            }
+            if (this.endboss.energy == 0){
+
+            }
         }, 1500);
     }
 
