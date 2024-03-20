@@ -69,6 +69,7 @@ class Character extends MovableObject {
         right: -30,
         bottom: -80
     }
+    time_idle = 0;
 
     constructor() {
         super().loadImage('./img/2_character_pepe/2_walk/W-21.png');
@@ -111,7 +112,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.death_sound.play();
                 this.world.gameOver();
-            } else if (this.isHurt()){
+            } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
                 this.hurt_sound.play();
             } else if (this.isAboveGround()) {
@@ -119,8 +120,23 @@ class Character extends MovableObject {
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.playAnimation(this.IMAGES_WALKING);
+                    this.time_idle = 0;
+                } else {
+                    this.countUp();
+                    if (this.time_idle > 80) {
+                        this.playAnimation(this.IMAGES_LONG_IDLE);
+                    }
+                    if (this.time_idle <= 80 && this.time_idle > 20) {
+                        this.playAnimation(this.IMAGES_IDLE);
+                    }
                 }
             }
         }, 50);
+    }
+
+    countUp(){
+        setTimeout(() => {
+            this.time_idle++;
+        }, 1000);
     }
 }
