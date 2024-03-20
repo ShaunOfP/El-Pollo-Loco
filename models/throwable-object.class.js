@@ -37,13 +37,13 @@ class ThrowableObject extends MovableObject {
                 this.x += 10;
             } else if (this.splash == true) {
                 this.speedY = 0;
+                this.acceleration = 0;
                 this.applyGravity();
-                this.x = this.x;
                 this.playAnimation(this.IMAGES_SPLASH);
                 setTimeout(() => {
                     this.splash = false;
-                }, 500);
+                }, 50);
             }
-        }, 1000 / 60);
+        }, 15);
     }
 }

@@ -55,7 +55,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
-        }, 200);
+        }, 50);
     }
 
 
@@ -118,10 +118,18 @@ class World {
                             this.endboss.hit(25);
                             this.bossBar.setPercentage(this.endboss.energy);
                             object.splash = true;
-                        } else {
+                            setTimeout(() => {
+                                this.throwableObjects.splice(object);
+                            }, 25);
+                        } else if (enemy instanceof Chicken || enemy instanceof ChickenSmall){ //triggert nur wenn mit debugger durchgegangen wird
+                            console.log(enemy ,' hit');
                             enemy.dead = true;
                             object.splash = true;
+                            setTimeout(() => {
+                                this.throwableObjects.splice(object);
+                            }, 25);
                         }
+                        this.throwActive = false;
                     }
                 });
             }
