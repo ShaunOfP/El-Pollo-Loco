@@ -90,7 +90,7 @@ class World {
                     }
                 }
                 if (enemy instanceof ChickenSmall) {
-                    if (this.character.isCollidingOnTop(enemy) && this.character.y > 150) {
+                    if (this.character.isCollidingOnTop(enemy) && this.character.y < 180) {
                         enemy.dead = true;
                     } else {
                         if (enemy.dead == false) {
@@ -119,7 +119,8 @@ class World {
                             this.bossBar.setPercentage(this.endboss.energy);
                             object.splash = true;
                         } else {
-                            console.log(enemy, ' hit with bottle'); //soll das möglich sein?
+                            enemy.dead = true;
+                            object.splash = true;
                         }
                     }
                 });

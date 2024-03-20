@@ -36,7 +36,7 @@
 
         <canvas id="canvas" width="720" height="480"></canvas>
 
-        <div class="width-720 d-flex align-items-center justify-content-between">
+        <div id="" class="width-720 d-flex align-items-center justify-content-between">
             <div class="flex-column">
                 <span class="yellow">D = Throw Bottle</span>
                 <span class="yellow">Arrow Up/Space = Jump</span>
@@ -45,6 +45,13 @@
             </div>
             <img id="toggleBtn" class="height-30 width-30 cursor-pointer" onclick="toggleFullscreen()"
                 src="img/icons/go-fullscreen.svg">
+        </div>
+
+        <div id="mobile-hud">
+            <button id="mobileLeft" class="mobileButton"><img src="img/icons/move-left-mobile.svg"></button>
+            <button id="mobileRight" class="mobileButton"><img src="img/icons/move-right-mobile.svg"></button>
+            <button id="mobileJump" class="mobileButton"><img src="img/icons/jump-mobile.svg"></button>
+            <button id="mobileThrow" class="mobileButton"><img src="img/icons/attack-mobile.svg"></button>
         </div>
     </div>
 </body>

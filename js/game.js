@@ -2,11 +2,59 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let counter = 0;
+const elementIDs = ['mobileLeft', 'mobileRight', 'mobileJump', 'mobileThrow'];
 
 
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+
+    elementIDs.forEach(id => {
+        const element = document.getElementById(id);
+
+        switch (element){
+            case ('mobileLeft'):
+                element.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    keyboard.LEFT = true;
+                });
+                element.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    keyboard.LEFT = false;
+                });
+            break;
+            case ('mobileRight'):
+                element.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    keyboard.RIGHT = true;
+                });
+                element.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    keyboard.RIGHT = false;
+                });
+            break;
+            case ('mobileJump'):
+                element.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    keyboard.SPACE = true;
+                });
+                element.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    keyboard.SPACE = false;
+                });
+            break;
+            case ('mobileThrow'):
+                element.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    keyboard.THROW = true;
+                });
+                element.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    keyboard.THROW = false;
+                });
+            break;
+        }
+    });
 }
 
 

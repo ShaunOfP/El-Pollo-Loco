@@ -141,3 +141,27 @@ h1 {
 span {
     font-size: 30px;
 }
+
+#mobile-hud{
+    display: flex;
+}
+
+.mobileButton{
+    height: 40px;
+    width: 40px;
+    border-radius: 30px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+}
+
+.mobileButton img{
+    height: 20px;
+    width: 20px;
+}
+
+@media(max-width: 440px){
+    
+}
