@@ -2,60 +2,82 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let counter = 0;
-const elementIDs = ['mobileLeft', 'mobileRight', 'mobileJump', 'mobileThrow'];
 
 
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
-    elementIDs.forEach(id => {
-        const element = document.getElementById(id);
-
-        switch (element){
-            case ('mobileLeft'):
-                element.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                    keyboard.LEFT = true;
-                });
-                element.addEventListener('touchend', (e) => {
-                    e.preventDefault();
-                    keyboard.LEFT = false;
-                });
-            break;
-            case ('mobileRight'):
-                element.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                    keyboard.RIGHT = true;
-                });
-                element.addEventListener('touchend', (e) => {
-                    e.preventDefault();
-                    keyboard.RIGHT = false;
-                });
-            break;
-            case ('mobileJump'):
-                element.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                    keyboard.SPACE = true;
-                });
-                element.addEventListener('touchend', (e) => {
-                    e.preventDefault();
-                    keyboard.SPACE = false;
-                });
-            break;
-            case ('mobileThrow'):
-                element.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                    keyboard.THROW = true;
-                });
-                element.addEventListener('touchend', (e) => {
-                    e.preventDefault();
-                    keyboard.THROW = false;
-                });
-            break;
-        }
-    });
 }
+
+
+window.addEventListener('touchstart', e => {
+    if (e.target instanceof HTMLImageElement) {
+        switch (e.target.parentElement.id) {
+            case ("mobileLeft"):
+                keyboard.LEFT = true;
+                break;
+            case ("mobileRight"):
+                keyboard.RIGHT = true;
+                break;
+            case ("mobileJump"):
+                keyboard.SPACE = true;
+                break;
+            case ("mobileThrow"):
+                keyboard.THROW = true;
+                break;
+
+        }
+    }
+    switch (e.target.id) {
+        case ("mobileLeft"):
+            keyboard.LEFT = true;
+            break;
+        case ("mobileRight"):
+            keyboard.RIGHT = true;
+            break;
+        case ("mobileJump"):
+            keyboard.SPACE = true;
+            break;
+        case ("mobileThrow"):
+            keyboard.THROW = true;
+            break;
+    }
+});
+
+
+window.addEventListener('touchend', e => {
+    if (e.target instanceof HTMLImageElement) {
+        switch (e.target.parentElement.id) {
+            case ("mobileLeft"):
+                keyboard.LEFT = false;
+                break;
+            case ("mobileRight"):
+                keyboard.RIGHT = false;
+                break;
+            case ("mobileJump"):
+                keyboard.SPACE = false;
+                break;
+            case ("mobileThrow"):
+                keyboard.THROW = false;
+                break;
+
+        }
+    }
+    switch (e.target.id) {
+        case ("mobileLeft"):
+            keyboard.LEFT = false;
+            break;
+        case ("mobileRight"):
+            keyboard.RIGHT = false;
+            break;
+        case ("mobileJump"):
+            keyboard.SPACE = false;
+            break;
+        case ("mobileThrow"):
+            keyboard.THROW = false;
+            break;
+    }
+});
 
 
 function toggleFullscreen() {
