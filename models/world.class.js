@@ -121,8 +121,7 @@ class World {
                             setTimeout(() => {
                                 this.throwableObjects.splice(object);
                             }, 25);
-                        } else if (enemy instanceof Chicken || enemy instanceof ChickenSmall){ //triggert nur wenn mit debugger durchgegangen wird
-                            console.log(enemy ,' hit');
+                        } else if (enemy instanceof Chicken || enemy instanceof ChickenSmall){
                             enemy.dead = true;
                             object.splash = true;
                             setTimeout(() => {
@@ -248,7 +247,7 @@ class World {
                 window.location.href = "./gameover-screen.html";
             }
             if (this.endboss.energy == 0){
-
+                window.location.href = "./gamewin-screen.html";
             }
         }, 1500);
     }
@@ -271,6 +270,6 @@ class World {
         this.character.walking_sound.pause();
         this.character.hurt_sound.pause();
         this.character.death_sound.pause();
-        //alle adneren sounds
+        //alle anderen sounds
     }
 }
