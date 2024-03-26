@@ -58,11 +58,6 @@ canvas {
     position: absolute;
 }
 
-.center {
-    top: 45%;
-    left: 36%;
-}
-
 .size-big{
     font-size: 100px;
 }

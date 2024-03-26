@@ -1,5 +1,5 @@
 let counter = 0;
-let game_over = new Audio('./audio/gameover.mp3');
+let game_won = new Audio('./audio/win.mp3');
 
 
 function restart() {
@@ -11,9 +11,9 @@ function toggleAudio(element){
     counter++;
     if (counter % 2){
         element.src = "./img/icons/music-toggle.svg";
-        game_over.play();
+        game_won.play();
     } else {
         element.src = "./img/icons/music-muted.svg";
-        game_over.pause();
+        game_won.pause();
     }
 }
