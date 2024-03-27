@@ -70,6 +70,7 @@ class Character extends MovableObject {
         bottom: -80
     }
     time_idle = 0;
+    soundPlayed = false;
 
     constructor() {
         super().loadImage('./img/2_character_pepe/2_walk/W-21.png');
@@ -107,10 +108,12 @@ class Character extends MovableObject {
 
         setInterval(() => {
             this.hurt_sound.pause();
-            this.death_sound.pause();
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                this.death_sound.play();
+                if (this.soundPlayed == false) {
+                    this.death_sound.play();
+                    this.soundPlayed = true;
+                }
                 this.world.gameOver();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
@@ -134,7 +137,7 @@ class Character extends MovableObject {
         }, 50);
     }
 
-    countUp(){
+    countUp() {
         setTimeout(() => {
             this.time_idle++;
         }, 1000);

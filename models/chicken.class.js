@@ -18,6 +18,7 @@ class Chicken extends MovableObject {
         bottom: 0
     }
     dead = false;
+    soundPlayed = false;
 
 
     constructor() {
@@ -30,17 +31,19 @@ class Chicken extends MovableObject {
     }
 
 
-    animate() {        
+    animate() {
         setInterval(() => {
             this.moveLeft();
         }, 1000 / 60);
 
         setInterval(() => {
-            this.chicken_sound.pause(); //doesnt work
             if (this.dead == true) {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.speed = 0;
-                this.chicken_sound.play();
+                if (this.soundPlayed == false) {
+                    this.chicken_sound.play();
+                    this.soundPlayed = true;
+                }
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
             }

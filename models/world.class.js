@@ -16,6 +16,7 @@ class World {
     bottleObjects = [];
     throwActive = false;
     coin_pickup = new Audio('./audio/coin-pickup.mp3');
+    bottle_pickup = new Audio('./audio/bottle-pickup.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -138,6 +139,7 @@ class World {
         this.level.bottles.forEach(bottle => {
             if (this.character.isColliding(bottle)) {
                 this.bottleObjects.push(bottle);
+                this.bottle_pickup.play();
                 this.bottleBar.setPercentage(this.bottleObjects.length * 20);
                 this.level.bottles.splice(0, 1);
                 this.draw();
@@ -271,7 +273,6 @@ class World {
     stopAllSounds() {
         this.character.walking_sound.pause();
         this.character.hurt_sound.pause();
-        this.character.death_sound.pause();
         //alle anderen sounds
     }
 }
