@@ -63,15 +63,16 @@ class Endboss extends MovableObject {
     animate() {
         let i = 0;
         setInterval(() => {
+            this.boss_sound.pause();
             if (i < 8) {
                 this.playAnimation(this.IMAGES_ALERT);
             } else {
                 if (this.isDead()){
                     this.playAnimation(this.IMAGES_DEAD);
                     this.world.gameOver();
-                    //victory screen
                 } else if (this.isHurt()) {
                     this.playAnimation(this.IMAGES_HURT);
+                    this.boss_sound.play();
                 } else if (this.isAttacking == true) {
                     this.playAnimation(this.IMAGES_ATTACKING);
                     setTimeout(() => {

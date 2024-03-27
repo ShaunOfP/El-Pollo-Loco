@@ -17,6 +17,7 @@ class ChickenSmall extends MovableObject {
         bottom: 0
     }
     dead = false;
+    smallchicken_audio = new Audio('./audio/'); // audio 
 
 
     constructor() {

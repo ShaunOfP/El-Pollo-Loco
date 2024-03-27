@@ -4,7 +4,6 @@ class Coin extends CollectableObject {
         './img/8_coin/coin_2.png'
     ];
     
-    
     constructor(){
         super();
         

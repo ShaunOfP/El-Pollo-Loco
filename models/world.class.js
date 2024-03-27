@@ -15,6 +15,7 @@ class World {
     collectableObjects = [];
     bottleObjects = [];
     throwActive = false;
+    coin_pickup = new Audio('./audio/coin-pickup.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -146,6 +147,7 @@ class World {
         this.level.coins.forEach(coin => {
             if (this.character.isColliding(coin)) {
                 this.collectableObjects.push(coin);
+                this.coin_pickup.play();
                 this.coinBar.setPercentage(this.collectableObjects.length * 20);
                 this.level.coins.splice(0, 1);
                 this.draw();
