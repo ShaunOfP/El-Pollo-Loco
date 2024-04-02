@@ -8,10 +8,10 @@ body {
     align-items: center;
     flex-direction: column;
     height: 100vh;
-    width: 100vw;
     background-image: url('img/game_background/background.png');
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
     margin: 0;
     font-family: 'zabars', Arial, Helvetica, sans-serif;
 }
@@ -206,6 +206,11 @@ span {
     width: 20px;
 }
 
+#titleScreen{
+    height: 480px;
+    width: 720px;
+}
+
 @media(max-width: 900px) {
     body {
         overflow: hidden;
@@ -234,5 +239,16 @@ span {
 @media (max-width: 900px) and (orientation: portrait){
     .rotate-message{
         display: flex;
+    }
+}
+
+@media (min-width: 2000px) {
+    .container{
+        width: 1440px;
+        height: 960px;
+    }
+    #titleScreen{
+        height: auto;
+        width: auto;
     }
 }
