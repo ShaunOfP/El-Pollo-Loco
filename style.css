@@ -23,7 +23,7 @@ canvas {
 
 @media only screen and (max-width: 720px) {
     canvas {
-        width: 100;
+        width: 100vw;
     }
 }
 
@@ -144,7 +144,7 @@ canvas {
     height: 30px;
 }
 
-.height-95{
+.height-95 {
     height: 95px;
 }
 
@@ -189,7 +189,7 @@ span {
     display: none;
 }
 
-.mobile-hud{
+.mobile-hud {
     display: none;
 }
 
@@ -209,7 +209,7 @@ span {
     background-color: orange;
 }
 
-.size-11{
+.size-11 {
     font-size: 11px;
 }
 
@@ -223,14 +223,14 @@ span {
     width: auto;
 }
 
-.gameScreen img{
+.gameScreen img {
     height: 100%;
     width: 100%;
     object-fit: contain;
 }
 
-@media (min-width: 933px){
-    .container{
+@media (min-width: 933px) {
+    .container {
         width: 854px;
     }
 
@@ -249,15 +249,21 @@ span {
         display: none;
     }
 
-    .container{
+    #canvas {
+        height: 100%;
+        width: 100%;
+    }
+
+    .container {
         width: 65vw;
     }
 
     #gameContainer {
-        justify-content: center;
+        height: 720px;
+        width: 480px;
     }
 
-    .desktop-hud{
+    .desktop-hud {
         display: none;
     }
 
@@ -265,7 +271,7 @@ span {
         display: none !important;
     }
 
-    .mobile-hud{
+    .mobile-hud {
         display: flex;
     }
 
