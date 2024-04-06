@@ -225,10 +225,19 @@ span {
     object-fit: contain;
 }
 
-@media(max-width: 915px) {
+@media (min-width: 933px){
+    .container{
+        width: 854px;
+    }
+
+    #titleScreen {
+        height: 480px;
+    }
+}
+
+@media(max-width: 932px) {
     body {
         overflow: hidden;
-        height: 100vh;
         width: 100%;
     }
 
