@@ -34,7 +34,7 @@ class World {
      */
     setEndboss() {
         for (const enemy of level1.enemies) {
-            if (enemy instanceof Endboss) {
+            if (this.isEnemyBoss(enemy)) {
                 return enemy;
             }
         }
@@ -109,7 +109,7 @@ class World {
                         }
                     }
                 }
-                if (this.isCollidingEnemyBoss(enemy)) {
+                if (this.isEnemyBoss(enemy)) {
                     this.endbossAttack();
                 }
             }
@@ -121,7 +121,7 @@ class World {
                     }
 
                     if (this.isBottleHittingEnemy(object, enemy)) {
-                        if (this.isCollidingEnemyBoss(enemy)) {
+                        if (this.isEnemyBoss(enemy)) {
                             this.endbossDamaged(object);
                         } else if (this.isEnemyHitted(enemy)) {
                             this.enemyDead(enemy, object);
@@ -228,7 +228,7 @@ class World {
     }
 
 
-    isCollidingEnemyBoss(enemy) {
+    isEnemyBoss(enemy) {
         return enemy instanceof Endboss;
     }
 
