@@ -37,16 +37,21 @@ class ThrowableObject extends MovableObject {
                 this.playAnimation(this.IMAGES_TO);
                 this.x += 10;
             } else if (this.splash == true) {
-                this.splash_audio.play();
-                this.speedY = 0;
-                this.acceleration = 0;
-                this.applyGravity();
-                this.playAnimation(this.IMAGES_SPLASH);
-                setTimeout(() => {
-                    this.splash = false;
-                    this.splash_audio.pause();
-                }, 50);
+                this.bottleSplash();
             }
         }, 15);
+    }
+
+    
+    bottleSplash() {
+        this.splash_audio.play();
+        this.speedY = 0;
+        this.acceleration = 0;
+        this.applyGravity();
+        this.playAnimation(this.IMAGES_SPLASH);
+        setTimeout(() => {
+            this.splash = false;
+            this.splash_audio.pause();
+        }, 50);
     }
 }

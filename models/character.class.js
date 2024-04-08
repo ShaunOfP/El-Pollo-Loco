@@ -88,19 +88,15 @@ class Character extends MovableObject {
     animate() {
         setInterval(() => {
             this.walking_sound.pause();
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                this.otherDirection = false;
-                this.walking_sound.play();
+            if (this.canMoveRight()) {
+                this.moveCharacterRight();
             }
 
-            if (this.world.keyboard.LEFT && this.x > 0) {
-                this.moveLeft();
-                this.otherDirection = true;
-                this.walking_sound.play();
+            if (this.canMoveLeft()) {
+                this.moveCharacterLeft();
             }
 
-            if ((this.world.keyboard.UP || this.world.keyboard.SPACE) && !this.isAboveGround()) {
+            if (this.canJump()) {
                 this.jump();
             }
             this.world.camera_x = -this.x + 100;
@@ -108,34 +104,84 @@ class Character extends MovableObject {
 
         setInterval(() => {
             this.hurt_sound.pause();
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-                if (this.soundPlayed == false) {
-                    this.death_sound.play();
-                    this.soundPlayed = true;
-                }
-                this.world.gameOver();
-            } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-                this.hurt_sound.play();
-            } else if (this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_JUMPING);
-            } else {
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.playAnimation(this.IMAGES_WALKING);
-                    this.time_idle = 0;
-                } else {
-                    this.countUp();
-                    if (this.time_idle > 80) {
-                        this.playAnimation(this.IMAGES_LONG_IDLE);
-                    }
-                    if (this.time_idle <= 80 && this.time_idle > 20) {
-                        this.playAnimation(this.IMAGES_IDLE);
-                    }
-                }
-            }
+            this.characterHealthStatus();
         }, 50);
     }
+
+
+    canMoveRight() {
+        return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x;
+    }
+
+
+    moveCharacterRight() {
+        this.moveRight();
+        this.otherDirection = false;
+        this.walking_sound.play();
+    }
+
+
+    canMoveLeft() {
+        return this.world.keyboard.LEFT && this.x > 0;
+    }
+
+
+    moveCharacterLeft() {
+        this.moveLeft();
+        this.otherDirection = true;
+        this.walking_sound.play();
+    }
+
+
+    canJump() {
+        return (this.world.keyboard.UP || this.world.keyboard.SPACE) && !this.isAboveGround();
+    }
+
+
+    characterHealthStatus() {
+        if (this.isDead()) {
+            this.characterDead();
+        } else if (this.isHurt()) {
+            this.characterHurt();
+        } else if (this.isAboveGround()) {
+            this.playAnimation(this.IMAGES_JUMPING);
+        } else {
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                this.playAnimation(this.IMAGES_WALKING);
+                this.time_idle = 0;
+            } else {
+                this.characterIdleAnimations();
+            }
+        }
+    }
+
+
+    characterDead() {
+        this.playAnimation(this.IMAGES_DEAD);
+        if (this.soundPlayed == false) {
+            this.death_sound.play();
+            this.soundPlayed = true;
+        }
+        this.world.gameOver();
+    }
+
+
+    characterHurt() {
+        this.playAnimation(this.IMAGES_HURT);
+        this.hurt_sound.play();
+    }
+
+
+    characterIdleAnimations() {
+        this.countUp();
+        if (this.time_idle > 80) {
+            this.playAnimation(this.IMAGES_LONG_IDLE);
+        }
+        if (this.time_idle <= 80 && this.time_idle > 20) {
+            this.playAnimation(this.IMAGES_IDLE);
+        }
+    }
+
 
     countUp() {
         setTimeout(() => {

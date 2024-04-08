@@ -60,7 +60,6 @@ class MovableObject extends DrawableObject {
             (this.y + this.height - this.offset.bottom) > (obj.y + obj.offset.top) &&
             (this.x + this.offset.left) < (obj.x + obj.width - obj.offset.right) &&
             (this.y + this.offset.top) < (obj.y + obj.height - obj.offset.bottom);
-        // obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
     }
 
 

@@ -67,25 +67,7 @@ class Endboss extends MovableObject {
             if (i < 8) {
                 this.playAnimation(this.IMAGES_ALERT);
             } else {
-                if (this.isDead()){
-                    this.playAnimation(this.IMAGES_DEAD);
-                    this.world.gameOver();
-                } else if (this.isHurt()) {
-                    this.playAnimation(this.IMAGES_HURT);
-                    this.boss_sound.play();
-                } else if (this.isAttacking == true) {
-                    this.playAnimation(this.IMAGES_ATTACKING);
-                    setTimeout(() => {
-                        this.isAttacking = false;
-                    }, 500);
-                } else {
-                    this.playAnimation(this.IMAGES_WALKING);
-                    if (world.character.x < this.x && this.hadFirstContact){
-                        this.moveLeft();
-                    } else if (world.character.x > this.x){
-                        this.moveRight(); // läuft noch nicht nach rechts
-                    }
-                }
+                this.endbossActions();
             }
 
             i++;
@@ -95,5 +77,27 @@ class Endboss extends MovableObject {
                 this.hadFirstContact = true;
             }
         }, 150);
+    }
+
+    endbossActions(){
+        if (this.isDead()){
+            this.playAnimation(this.IMAGES_DEAD);
+            this.world.gameOver();
+        } else if (this.isHurt()) {
+            this.playAnimation(this.IMAGES_HURT);
+            this.boss_sound.play();
+        } else if (this.isAttacking == true) {
+            this.playAnimation(this.IMAGES_ATTACKING);
+            setTimeout(() => {
+                this.isAttacking = false;
+            }, 500);
+        } else {
+            this.playAnimation(this.IMAGES_WALKING);
+            if (world.character.x < this.x && this.hadFirstContact){
+                this.moveLeft();
+            } else if (world.character.x > this.x){
+                this.moveRight(); // läuft noch nicht nach rechts
+            }
+        }
     }
 }

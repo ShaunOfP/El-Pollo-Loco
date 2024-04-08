@@ -32,9 +32,9 @@ class World {
      * This searches for an object in the level1.js
      * @returns object of Endboss for level1
      */
-    setEndboss(){
-        for (const enemy of level1.enemies){
-            if (enemy instanceof Endboss){
+    setEndboss() {
+        for (const enemy of level1.enemies) {
+            if (enemy instanceof Endboss) {
                 return enemy;
             }
         }
@@ -65,13 +65,23 @@ class World {
      * checks for bottles and updates bottle bar
      */
     checkThrowObjects() {
-        if (this.keyboard.THROW && this.bottleObjects.length != 0 && !this.throwActive) {
-            let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70);
-            this.throwableObjects.push(bottle);
-            this.bottleObjects.splice(0, 1);
-            this.bottleBar.setPercentage(this.bottleObjects.length * 20);
-            this.throwActive = true;
+        if (this.canThrowBottle()) {
+            this.generateBottleAndUpdateArrayAndBottleBar();
         }
+    }
+
+
+    canThrowBottle() {
+        return this.keyboard.THROW && this.bottleObjects.length != 0 && !this.throwActive;
+    }
+
+
+    generateBottleAndUpdateArrayAndBottleBar() {
+        let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70);
+        this.throwableObjects.push(bottle);
+        this.bottleObjects.splice(0, 1);
+        this.bottleBar.setPercentage(this.bottleObjects.length * 20);
+        this.throwActive = true;
     }
 
 
@@ -80,55 +90,41 @@ class World {
      */
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                if (enemy instanceof Chicken) {
-                    if (this.character.isCollidingOnTop(enemy) && this.character.y < 180) {
+            if (this.isCharacterCollidingWithEnemy(enemy)) {
+                if (this.isEnemyNormalChicken(enemy)) {
+                    if (this.isCharacterAboveEnemy(enemy)) {
                         enemy.dead = true;
                     } else {
                         if (enemy.dead == false) {
-                            this.character.hit(10);
-                            this.statusBar.setPercentage(this.character.energy);
+                            this.characterTakesDamage(10);
                         }
                     }
                 }
-                if (enemy instanceof ChickenSmall) {
-                    if (this.character.isCollidingOnTop(enemy) && this.character.y < 180) {
+                if (this.isEnemySmallChicken(enemy)) {
+                    if (this.isCharacterAboveEnemy(enemy)) {
                         enemy.dead = true;
                     } else {
                         if (enemy.dead == false) {
-                            this.character.hit(5);
-                            this.statusBar.setPercentage(this.character.energy);
+                            this.characterTakesDamage(5);
                         }
                     }
                 }
-                if (enemy instanceof Endboss){
-                    this.endboss.isAttacking = true;
-                    this.character.hit(15);
-                    this.statusBar.setPercentage(this.character.energy);
+                if (this.isCollidingEnemyBoss(enemy)) {
+                    this.endbossAttack();
                 }
             }
 
-            if (this.throwableObjects.length != 0) {
+            if (this.areBottlesAvailable()) {
                 this.throwableObjects.forEach(object => {
-                    if (object.y >= 400) {
-                        this.throwableObjects.splice(object);
-                        this.throwActive = false;
+                    if (this.isBottleOutOfMap(object)) {
+                        this.removeBottle(object);
                     }
 
-                    if (object.isColliding(enemy)) {
-                        if (enemy instanceof Endboss) {
-                            this.endboss.hit(25);
-                            this.bossBar.setPercentage(this.endboss.energy);
-                            object.splash = true;
-                            setTimeout(() => {
-                                this.throwableObjects.splice(object);
-                            }, 25);
-                        } else if (enemy instanceof Chicken || enemy instanceof ChickenSmall){
-                            enemy.dead = true;
-                            object.splash = true;
-                            setTimeout(() => {
-                                this.throwableObjects.splice(object);
-                            }, 25);
+                    if (this.isBottleHittingEnemy(object, enemy)) {
+                        if (this.isCollidingEnemyBoss(enemy)) {
+                            this.endbossDamaged(object);
+                        } else if (this.isEnemyHitted(enemy)) {
+                            this.enemyDead(enemy, object);
                         }
                         this.throwActive = false;
                     }
@@ -137,24 +133,127 @@ class World {
         });
 
         this.level.bottles.forEach(bottle => {
-            if (this.character.isColliding(bottle)) {
-                this.bottleObjects.push(bottle);
-                this.bottle_pickup.play();
-                this.bottleBar.setPercentage(this.bottleObjects.length * 20);
-                this.level.bottles.splice(0, 1);
-                this.draw();
+            if (this.characterCollidingWithBottle(bottle)) {
+                this.bottlePickedUp(bottle);
             }
         });
 
         this.level.coins.forEach(coin => {
-            if (this.character.isColliding(coin)) {
-                this.collectableObjects.push(coin);
-                this.coin_pickup.play();
-                this.coinBar.setPercentage(this.collectableObjects.length * 20);
-                this.level.coins.splice(0, 1);
-                this.draw();
+            if (this.characterCollidingWithCoin(coin)) {
+                this.coinPickedUp(coin);
             }
         });
+    }
+
+
+    isCharacterCollidingWithEnemy(enemy){
+        return this.character.isColliding(enemy);
+    }
+
+
+    isEnemyNormalChicken(enemy){
+        return enemy instanceof Chicken;
+    }
+
+
+    isEnemySmallChicken(enemy) {
+        return enemy instanceof ChickenSmall;
+    }
+
+
+    isCharacterAboveEnemy(enemy) {
+        return this.character.isCollidingOnTop(enemy) && this.character.y < 180;
+    }
+
+
+    characterTakesDamage(damage) {
+        this.character.hit(damage);
+        this.statusBar.setPercentage(this.character.energy);
+    }
+
+
+    endbossAttack() {
+        this.endboss.isAttacking = true;
+        this.character.hit(15);
+        this.statusBar.setPercentage(this.character.energy);
+    }
+
+
+    characterCollidingWithBottle(bottle) {
+        return this.character.isColliding(bottle);
+    }
+
+
+    bottlePickedUp(bottle) {
+        this.bottleObjects.push(bottle);
+        this.bottle_pickup.play();
+        this.bottleBar.setPercentage(this.bottleObjects.length * 20);
+        this.level.bottles.splice(0, 1);
+        this.draw();
+    }
+
+
+    characterCollidingWithCoin(coin) {
+        return this.character.isColliding(coin);
+    }
+
+
+    coinPickedUp(coin) {
+        this.collectableObjects.push(coin);
+        this.coin_pickup.play();
+        this.coinBar.setPercentage(this.collectableObjects.length * 20);
+        this.level.coins.splice(0, 1);
+        this.draw();
+    }
+
+
+    areBottlesAvailable() {
+        return this.throwableObjects.length != 0;
+    }
+
+
+    isBottleOutOfMap(object) {
+        return object.y >= 400;
+    }
+
+
+    removeBottle(object) {
+        this.throwableObjects.splice(object);
+        this.throwActive = false;
+    }
+
+
+    isBottleHittingEnemy(object, enemy) {
+        return object.isColliding(enemy);
+    }
+
+
+    isCollidingEnemyBoss(enemy) {
+        return enemy instanceof Endboss;
+    }
+
+
+    endbossDamaged(object) {
+        this.endboss.hit(25);
+        this.bossBar.setPercentage(this.endboss.energy);
+        object.splash = true;
+        setTimeout(() => {
+            this.throwableObjects.splice(object);
+        }, 25);
+    }
+
+
+    isEnemyHitted(enemy) {
+        return enemy instanceof Chicken || enemy instanceof ChickenSmall;
+    }
+
+
+    enemyDead(enemy, object) {
+        enemy.dead = true;
+        object.splash = true;
+        setTimeout(() => {
+            this.throwableObjects.splice(object);
+        }, 25);
     }
 
 
@@ -168,15 +267,14 @@ class World {
         this.addObjectsToMap(this.level.clouds);
 
         this.ctx.translate(-this.camera_x, 0);
-        // Space for fixed objects
-
+        // Space for fixed objects between me
         this.addToMap(this.statusBar);
         this.addToMap(this.bottleBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.bossBar);
-        //
+        //and me
         this.ctx.translate(this.camera_x, 0);
- 
+
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.enemies);
@@ -204,7 +302,7 @@ class World {
 
     /**
      * this gives a single movable object to the draw function and checks if it should be mirrored or not
-     * @param {object} mo 
+     * @param {object} mo
      */
     addToMap(mo) {
         if (mo.otherDirection) {
@@ -247,12 +345,7 @@ class World {
         setTimeout(() => {
             this.clearAllIntervals();
             this.stopAllSounds();
-            if (this.character.energy == 0){
-                window.location.href = "./gameover-screen.html";
-            }
-            if (this.endboss.energy == 0){
-                window.location.href = "./gamewin-screen.html";
-            }
+            this.moveToGameOverScreen();
         }, 1500);
     }
 
@@ -273,6 +366,15 @@ class World {
     stopAllSounds() {
         this.character.walking_sound.pause();
         this.character.hurt_sound.pause();
-        //alle anderen sounds
+    }
+
+
+    moveToGameOverScreen() {
+        if (this.character.energy == 0) {
+            window.location.href = "./gameover-screen.html";
+        }
+        if (this.endboss.energy == 0) {
+            window.location.href = "./gamewin-screen.html";
+        }
     }
 }

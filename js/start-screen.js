@@ -2,11 +2,6 @@ let counter = 0;
 let game_Theme = new Audio('./audio/main-theme.mp3');
 
 
-function init() {
-
-}
-
-
 function start() {
     window.location.href = "./index.html";
 }
