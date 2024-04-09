@@ -28,6 +28,9 @@ class ThrowableObject extends MovableObject {
     }
 
 
+    /**
+     * Visualizes the throw of a Bottle
+     */
     throw() {
         this.speedY = 30;
         this.applyGravity();
@@ -43,6 +46,9 @@ class ThrowableObject extends MovableObject {
     }
 
     
+    /**
+     * Plays the sound and animations for the Bottle-Splash
+     */
     bottleSplash() {
         this.splash_audio.play();
         this.speedY = 0;

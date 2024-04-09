@@ -250,7 +250,7 @@ span {
     }
 
     #canvas {
-        height: 100%;
+        /* height: 100%; */
         width: 100%;
     }
 
@@ -261,6 +261,7 @@ span {
     #gameContainer {
         height: 720px;
         width: 480px;
+        justify-content: center;
     }
 
     .desktop-hud {

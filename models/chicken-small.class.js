@@ -32,6 +32,9 @@ class ChickenSmall extends MovableObject {
     }
 
 
+    /**
+     * Animates the Small Chicken walking or being dead
+     */
     animate() {
         setInterval(() => this.moveLeft(), 1000 / 60);
 

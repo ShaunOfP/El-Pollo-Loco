@@ -11,6 +11,9 @@ class Cloud extends MovableObject {
     }
 
 
+    /**
+     * Animates the Clouds to move to the left of the screen
+     */
     animate(){
         this.moveLeft();
     }

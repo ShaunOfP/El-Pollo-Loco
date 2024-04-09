@@ -60,6 +60,9 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Plays animations based on the state of the Bossfight
+     */
     animate() {
         let i = 0;
         setInterval(() => {
@@ -79,6 +82,10 @@ class Endboss extends MovableObject {
         }, 150);
     }
 
+
+    /**
+     * Animates the different actions of the Endboss
+     */
     endbossActions(){
         if (this.isDead()){
             this.playAnimation(this.IMAGES_DEAD);

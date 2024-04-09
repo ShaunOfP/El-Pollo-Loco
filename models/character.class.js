@@ -85,6 +85,9 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Animates the character actions
+     */
     animate() {
         setInterval(() => {
             this.walking_sound.pause();
@@ -109,11 +112,18 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Checks if the character can move to the right
+     * @returns true or false
+     */
     canMoveRight() {
         return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x;
     }
 
 
+    /**
+     * Lets the character to move the right
+     */
     moveCharacterRight() {
         this.moveRight();
         this.otherDirection = false;
@@ -121,11 +131,18 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Checks if the character can move to the left
+     * @returns true or false
+     */
     canMoveLeft() {
         return this.world.keyboard.LEFT && this.x > 0;
     }
 
 
+    /**
+     * Lets the character move to the left
+     */
     moveCharacterLeft() {
         this.moveLeft();
         this.otherDirection = true;
@@ -133,11 +150,18 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Checks if the character can jump
+     * @returns true or false
+     */
     canJump() {
         return (this.world.keyboard.UP || this.world.keyboard.SPACE) && !this.isAboveGround();
     }
 
 
+    /**
+     * Animates the different actions when the players health status changes
+     */
     characterHealthStatus() {
         if (this.isDead()) {
             this.characterDead();
@@ -156,6 +180,9 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Enables animations and game over when the character health reaches 0
+     */
     characterDead() {
         this.playAnimation(this.IMAGES_DEAD);
         if (this.soundPlayed == false) {
@@ -166,12 +193,18 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Animates the character getting hurt
+     */
     characterHurt() {
         this.playAnimation(this.IMAGES_HURT);
         this.hurt_sound.play();
     }
 
 
+    /**
+     * Animates the Idle-Animation of the character
+     */
     characterIdleAnimations() {
         this.countUp();
         if (this.time_idle > 80) {
@@ -183,6 +216,9 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Increases a variable each second
+     */
     countUp() {
         setTimeout(() => {
             this.time_idle++;

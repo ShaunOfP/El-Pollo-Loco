@@ -71,11 +71,18 @@ class World {
     }
 
 
+    /**
+     * Checks for a conditions to allow a bottle to be thrown
+     * @returns true or false
+     */
     canThrowBottle() {
         return this.keyboard.THROW && this.bottleObjects.length != 0 && !this.throwActive;
     }
 
 
+    /**
+     * Generates the new Bottle and modifies the Array for the Bottle-Bar
+     */
     generateBottleAndUpdateArrayAndBottleBar() {
         let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 70);
         this.throwableObjects.push(bottle);
@@ -146,32 +153,59 @@ class World {
     }
 
 
-    isCharacterCollidingWithEnemy(enemy){
+    /**
+     * Checks if the character is colliding with an enemy from the current Level
+     * @param {object} enemy 
+     * @returns true or false
+     */
+    isCharacterCollidingWithEnemy(enemy) {
         return this.character.isColliding(enemy);
     }
 
 
-    isEnemyNormalChicken(enemy){
+    /**
+     * Checks if the enemy is an instance of Chicken
+     * @param {object} enemy 
+     * @returns true or false
+     */
+    isEnemyNormalChicken(enemy) {
         return enemy instanceof Chicken;
     }
 
 
+    /**
+     * Checks if the enemy is an instance of ChickenSmall
+     * @param {object} enemy 
+     * @returns true or false
+     */
     isEnemySmallChicken(enemy) {
         return enemy instanceof ChickenSmall;
     }
 
 
+    /**
+     * Checks if the collision is a jump on the enemy's head
+     * @param {object} enemy 
+     * @returns true or false
+     */
     isCharacterAboveEnemy(enemy) {
         return this.character.isCollidingOnTop(enemy) && this.character.y < 180;
     }
 
 
+    /**
+     * Applies the Damage to the character and refreshes the Healthbar
+     * @param {integer} damage 
+     */
     characterTakesDamage(damage) {
         this.character.hit(damage);
         this.statusBar.setPercentage(this.character.energy);
     }
 
 
+    /**
+     * Used to let the Endboss attack the character
+     */
     endbossAttack() {
         this.endboss.isAttacking = true;
         this.character.hit(15);
@@ -179,11 +213,20 @@ class World {
     }
 
 
+    /**
+     * Checks if the character is colliding with a Bottle(pickup)
+     * @param {object} bottle 
+     * @returns true or false
+     */
     characterCollidingWithBottle(bottle) {
         return this.character.isColliding(bottle);
     }
 
 
+    /**
+     * Visualizes the Pickup of a Bottle for the Player
+     * @param {object} bottle 
+     */
     bottlePickedUp(bottle) {
         this.bottleObjects.push(bottle);
         this.bottle_pickup.play();
@@ -193,11 +236,20 @@ class World {
     }
 
 
+    /**
+     * Checks if the character is colliding with a Coin (pickup)
+     * @param {object} coin 
+     * @returns true or false
+     */
     characterCollidingWithCoin(coin) {
         return this.character.isColliding(coin);
     }
 
 
+    /**
+     * Visualizes the Pickup of a Coin for the Player
+     * @param {object} coin 
+     */
     coinPickedUp(coin) {
         this.collectableObjects.push(coin);
         this.coin_pickup.play();
@@ -207,32 +259,60 @@ class World {
     }
 
 
+    /**
+     * Checks if bottles are available to throw
+     * @returns true or false
+     */
     areBottlesAvailable() {
         return this.throwableObjects.length != 0;
     }
 
 
+    /**
+     * Checks if a bottle has left the Gamescreen
+     * @param {object} object 
+     * @returns true or false
+     */
     isBottleOutOfMap(object) {
         return object.y >= 400;
     }
 
 
+    /**
+     * Removes a bottle from the Bottle-Array and reactivates the ability to throw a Bottle
+     * @param {object} object 
+     */
     removeBottle(object) {
         this.throwableObjects.splice(object);
         this.throwActive = false;
     }
 
 
+    /**
+     * Checks if a thrown Bottle has hit an enemy
+     * @param {object} object 
+     * @param {object} enemy 
+     * @returns true or false
+     */
     isBottleHittingEnemy(object, enemy) {
         return object.isColliding(enemy);
     }
 
 
+    /**
+     * Checks if the hitted enemy is a Boss
+     * @param {object} enemy 
+     * @returns true or false
+     */
     isEnemyBoss(enemy) {
         return enemy instanceof Endboss;
     }
 
 
+    /**
+     * Calculates the damage dealt to the Endboss and updates the Boss-Healthbar
+     * @param {object} object 
+     */
     endbossDamaged(object) {
         this.endboss.hit(25);
         this.bossBar.setPercentage(this.endboss.energy);
@@ -243,11 +323,21 @@ class World {
     }
 
 
+    /**
+     * Checks if the hitted enemy is a normal enemy (not a Boss)
+     * @param {object} enemy 
+     * @returns true or false
+     */
     isEnemyHitted(enemy) {
         return enemy instanceof Chicken || enemy instanceof ChickenSmall;
     }
 
 
+    /**
+     * Visualizes the death of a normal enemy when hit with a bottle
+     * @param {object} enemy 
+     * @param {object} object 
+     */
     enemyDead(enemy, object) {
         enemy.dead = true;
         object.splash = true;
@@ -369,6 +459,9 @@ class World {
     }
 
 
+    /**
+     * Displays the Gameoverscreen when either of the conditions are met
+     */
     moveToGameOverScreen() {
         if (this.character.energy == 0) {
             window.location.href = "./gameover-screen.html";

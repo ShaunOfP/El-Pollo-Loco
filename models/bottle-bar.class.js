@@ -21,6 +21,10 @@ class BottleBar extends DrawableObject {
     }
 
 
+    /**
+     * calculates the percentage to display the correct image for the Bottlebar
+     * @param {integer} percentage 
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES_BOTTLEBAR[this.resolveImageIndex()];
@@ -28,6 +32,10 @@ class BottleBar extends DrawableObject {
     }
 
 
+    /**
+     * Returns the correct image for the Bottlebar based on the percentage
+     * @returns an integer
+     */
     resolveImageIndex() {
         if (this.percentage == 0) {
             return 0;
