@@ -20,5 +20,6 @@ function toggleAudio(element) {
 
 
 function toggleMobileGTC(){
-    
+    let menu = document.getElementById('mobileGTCToggle');
+    menu.classList.toggle('d-none');
 }
