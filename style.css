@@ -21,6 +21,10 @@ canvas {
     display: block;
 }
 
+a:hover{
+    transform: scale(1.2);
+}
+
 @media only screen and (max-width: 720px) {
     canvas {
         width: 100vw;
@@ -41,8 +45,24 @@ canvas {
     height: 480px;
 }
 
+.deco-none{
+    text-decoration: none;
+}
+
 .width-720 {
     width: 720px;
+}
+
+.eplColor{
+    color: rgb(255, 166, 0);
+}
+
+.fontsize-27{
+    font-size: 27px;
+}
+
+.fontweight-700{
+    font-weight: 700;
 }
 
 .h-100 {
@@ -106,6 +126,17 @@ canvas {
 
 .rotate-message span {
     color: #4caf50;
+}
+
+.controlsOverlay{
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 #startBtn:hover {
@@ -181,6 +212,10 @@ h1 {
     text-shadow: 2px 6px 2px black;
 }
 
+.txt-shadow{
+    text-shadow: 2px 6px 2px black;
+}
+
 span {
     font-size: 30px;
 }
@@ -209,6 +244,17 @@ span {
     background-color: orange;
 }
 
+.secondMobileButton{
+    border-radius: 8px;
+    height: 40px;
+    width: 80px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+}
+
 .size-11 {
     font-size: 11px;
 }
@@ -227,6 +273,26 @@ span {
     height: 100%;
     width: 100%;
     object-fit: contain;
+}
+
+.fontsize-61{
+    font-size: 61px;
+}
+
+.fontsize-21{
+    font-size: 21px;
+}
+
+.bgFixed{
+    background-attachment: fixed;
+}
+
+.noAlignCenter{
+    align-items: normal !important;
+}
+
+.margin-25{
+    margin: 25px;
 }
 
 @media (min-width: 933px) {
@@ -250,7 +316,6 @@ span {
     }
 
     #canvas {
-        /* height: 100%; */
         width: 100%;
     }
 

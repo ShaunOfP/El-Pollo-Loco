@@ -22,10 +22,15 @@
             <img class="btn-hover height-30 width-30 padding-10" onclick="toggleAudio(this)"
                 src="img/icons/music-muted.svg">
             <button id="startBtn" onclick="start()">Start</button>
-            <div class="invisible"> </div>
+            <div class="flex-column">
+                <a class="deco-none fontsize-27 eplColor" href="legal-notice.html">Legal Notice</a>
+                <a class="deco-none fontsize-27 eplColor" href="privacy-policy.html">Privacy Policy</a>
+            </div>
         </div>
-        <div class="d-flex justify-content-center mobile-hud">
+        <div class="d-flex justify-content-between mobile-hud">
+            <div class="invisible">This is a placeholder</div>
             <button class="mobileButton" onclick="start()">Start</button>
+            <button class="secondMobileButton size-11" onclick="toggleMobileGTC()">General terms and conditions</button>
         </div>
     </div>
 </body>

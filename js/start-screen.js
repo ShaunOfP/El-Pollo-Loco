@@ -17,3 +17,8 @@ function toggleAudio(element) {
         game_Theme.pause();
     }
 }
+
+
+function toggleMobileGTC(){
+    
+}
