@@ -21,7 +21,7 @@ canvas {
     display: block;
 }
 
-a:hover{
+a:hover {
     transform: scale(1.2);
 }
 
@@ -45,7 +45,7 @@ a:hover{
     height: 480px;
 }
 
-.deco-none{
+.deco-none {
     text-decoration: none;
 }
 
@@ -53,15 +53,15 @@ a:hover{
     width: 720px;
 }
 
-.eplColor{
+.eplColor {
     color: rgb(255, 166, 0);
 }
 
-.fontsize-27{
+.fontsize-27 {
     font-size: 27px;
 }
 
-.fontweight-700{
+.fontweight-700 {
     font-weight: 700;
 }
 
@@ -128,7 +128,7 @@ a:hover{
     color: #4caf50;
 }
 
-.controlsOverlay{
+.controlsOverlay {
     z-index: 999;
     height: 100%;
     width: 100%;
@@ -212,7 +212,7 @@ h1 {
     text-shadow: 2px 6px 2px black;
 }
 
-.txt-shadow{
+.txt-shadow {
     text-shadow: 2px 6px 2px black;
 }
 
@@ -244,7 +244,7 @@ span {
     background-color: orange;
 }
 
-.secondMobileButton{
+.secondMobileButton {
     border-radius: 8px;
     height: 40px;
     width: 80px;
@@ -275,27 +275,33 @@ span {
     object-fit: contain;
 }
 
-.fontsize-61{
+.gameOverScreen img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.fontsize-61 {
     font-size: 61px;
 }
 
-.fontsize-21{
+.fontsize-21 {
     font-size: 21px;
 }
 
-.bgFixed{
+.bgFixed {
     background-attachment: fixed;
 }
 
-.noAlignCenter{
+.noAlignCenter {
     align-items: normal !important;
 }
 
-.margin-25{
+.margin-25 {
     margin: 25px;
 }
 
-.mobileGTC{
+.mobileGTC {
     z-index: 999;
     height: 100%;
     width: 100%;
@@ -305,7 +311,19 @@ span {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.d-none{
+.overflow-visible {
+    overflow: visible;
+}
+
+.width-auto{
+    width: auto;
+}
+
+.height-auto{
+    height: auto;
+}
+
+.d-none {
     display: none;
 }
 
@@ -327,6 +345,14 @@ span {
 
     h1 {
         display: none;
+    }
+
+    #ppHeadline{
+        display: block;
+    }
+
+    #lnHeader{
+        display: block;
     }
 
     #canvas {
@@ -379,8 +405,13 @@ span {
         height: 960px;
     }
 
+    .gameOverScreen {
+        width: 1440px;
+        height: 960px;
+    }
+
     .gameScreen {
-        height: auto;
-        width: auto;
+        width: 1200px;
+        height: 800px;
     }
 }
