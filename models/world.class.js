@@ -463,9 +463,9 @@ class World {
      * Displays the Gameoverscreen when either of the conditions are met
      */
     moveToGameOverScreen() {
-        if (this.character.energy == 0) {
-            window.location.href = "./gameover-screen.html";
-        }
+        // if (this.character.energy == 0) {
+        //     window.location.href = "./gameover-screen.html";
+        // }
         if (this.endboss.energy == 0) {
             window.location.href = "./gamewin-screen.html";
         }

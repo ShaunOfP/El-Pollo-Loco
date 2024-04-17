@@ -49,6 +49,27 @@ class MovableObject extends DrawableObject {
 
 
     /**
+     * Plays an animation only once, currently only purpose to animate the Death of the character
+     * @param {array} images [
+     *  '../img/path',
+     *  '../img/path'
+     * ]
+     */
+    playAnimationOnce(images){
+        let i = this.uniqueImage % images.length;
+        let path = images[i];
+        this.img = this.imageCache[path];
+        
+        if (this.uniqueImage == images.length){
+            path = images[images.length - 1];
+            this.img = this.imageCache[path];
+        } else {
+            this.uniqueImage++;
+        }
+    }
+
+
+    /**
      * Animates walking to the right side
      */
     moveRight() {

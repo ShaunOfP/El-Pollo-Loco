@@ -71,6 +71,7 @@ class Character extends MovableObject {
     }
     time_idle = 0;
     soundPlayed = false;
+    
 
     constructor() {
         super().loadImage('./img/2_character_pepe/2_walk/W-21.png');
@@ -184,8 +185,8 @@ class Character extends MovableObject {
      * Enables animations and game over when the character health reaches 0
      */
     characterDead() {
-        this.playAnimation(this.IMAGES_DEAD);
-        if (this.soundPlayed == false) {
+        this.playAnimationOnce(this.IMAGES_DEAD);
+        if (!this.soundPlayed) {
             this.death_sound.play();
             this.soundPlayed = true;
         }
