@@ -19,7 +19,7 @@ class ChickenSmall extends MovableObject {
     dead = false;
     smallchicken_audio = new Audio('./audio/small-chicken.mp3'); // audio 
     soundPlayed = false;
-
+    muted;
 
     constructor() {
         super().loadImage('./img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
@@ -42,7 +42,7 @@ class ChickenSmall extends MovableObject {
             if (this.dead == true) {
                 this.speed = 0;
                 this.playAnimation(this.IMAGES_DEAD);
-                if (this.soundPlayed == false) {
+                if (this.soundPlayed == false && !this.muted) {
                     this.smallchicken_audio.play();
                     this.soundPlayed = true;
                 }

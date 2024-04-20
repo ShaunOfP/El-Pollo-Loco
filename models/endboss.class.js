@@ -48,6 +48,7 @@ class Endboss extends MovableObject {
         right: -40,
         bottom: 0
     }
+    muted;
 
     constructor() {
         super().loadImage('./img/4_enemie_boss_chicken/1_walk/G1.png');
@@ -92,7 +93,9 @@ class Endboss extends MovableObject {
             this.world.gameOver();
         } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
-            this.boss_sound.play();
+            if (!this.muted){
+                this.boss_sound.play();
+            }
         } else if (this.isAttacking == true) {
             this.playAnimation(this.IMAGES_ATTACKING);
             setTimeout(() => {

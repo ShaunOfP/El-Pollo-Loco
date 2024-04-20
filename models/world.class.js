@@ -17,6 +17,8 @@ class World {
     throwActive = false;
     coin_pickup = new Audio('./audio/coin-pickup.mp3');
     bottle_pickup = new Audio('./audio/bottle-pickup.mp3');
+    muted;
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -229,7 +231,9 @@ class World {
      */
     bottlePickedUp(bottle) {
         this.bottleObjects.push(bottle);
-        this.bottle_pickup.play();
+        if (!this.muted){
+            this.bottle_pickup.play();
+        }
         this.bottleBar.setPercentage(this.bottleObjects.length * 20);
         this.level.bottles.splice(0, 1);
         this.draw();
@@ -252,7 +256,9 @@ class World {
      */
     coinPickedUp(coin) {
         this.collectableObjects.push(coin);
-        this.coin_pickup.play();
+        if (!this.muted){
+            this.coin_pickup.play();
+        }
         this.coinBar.setPercentage(this.collectableObjects.length * 20);
         this.level.coins.splice(0, 1);
         this.draw();
@@ -463,9 +469,9 @@ class World {
      * Displays the Gameoverscreen when either of the conditions are met
      */
     moveToGameOverScreen() {
-        // if (this.character.energy == 0) {
-        //     window.location.href = "./gameover-screen.html";
-        // }
+        if (this.character.energy == 0) {
+            window.location.href = "./gameover-screen.html";
+        }
         if (this.endboss.energy == 0) {
             window.location.href = "./gamewin-screen.html";
         }

@@ -401,8 +401,11 @@ span {
 
 @media (min-width: 2000px) {
     .container {
-        width: 1440px;
-        height: 960px;
+        width: auto;
+    }
+
+    #desktop-hud{
+        width: 100%;
     }
 
     .gameOverScreen {

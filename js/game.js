@@ -82,29 +82,35 @@ window.addEventListener('touchend', e => {
 
 function toggleFullscreen() {
     counter++;
-    let game = document.getElementById('gameContainer');
-    let shrinkBtn = document.getElementById('toggleBtn');
+    let game = document.getElementById('canvas');
+    // let shrinkBtn = document.getElementById('toggleBtn');
 
     if (counter % 2) {
         if (game.requestFullScreen) {
             game.requestFullscreen();
-            shrinkBtn.src = './img/icons/go-normalscreen.svg';
-            shrinkBtn.style.filter = 'invert(73%) sepia(19%) saturate(2522%) hue-rotate(357deg) brightness(103%) contrast(102%)';
+            // shrinkBtn.src = './img/icons/go-normalscreen.svg';
+            counter = 0;
+            // shrinkBtn.style.filter = 'invert(73%) sepia(19%) saturate(2522%) hue-rotate(357deg) brightness(103%) contrast(102%)';
         }
         else if (game.webkitRequestFullScreen) {
             game.webkitRequestFullscreen();
-            shrinkBtn.src = './img/icons/go-normalscreen.svg';
-            shrinkBtn.style.filter = 'invert(73%) sepia(19%) saturate(2522%) hue-rotate(357deg) brightness(103%) contrast(102%)';
+            // shrinkBtn.src = './img/icons/go-normalscreen.svg';
+            counter = 0;
+            // shrinkBtn.style.filter = 'invert(73%) sepia(19%) saturate(2522%) hue-rotate(357deg) brightness(103%) contrast(102%)';
         }
         else if (game.mozRequestFullScreen) {
             game.mozRequestFullscreen();
-            shrinkBtn.src = './img/icons/go-normalscreen.svg';
-            shrinkBtn.style.filter = 'invert(73%) sepia(19%) saturate(2522%) hue-rotate(357deg) brightness(103%) contrast(102%)';
+            // shrinkBtn.src = './img/icons/go-normalscreen.svg';
+            counter = 0;
+            // shrinkBtn.style.filter = 'invert(73%) sepia(19%) saturate(2522%) hue-rotate(357deg) brightness(103%) contrast(102%)';
         }
-    } else {
-        document.exitFullscreen();
-        shrinkBtn.src = './img/icons/go-fullscreen.svg';
-        shrinkBtn.style.filter = 'invert(0%) sepia(6%) saturate(2850%) hue-rotate(60deg) brightness(93%) contrast(104%)';
+        // } else {
+        //     document.exitFullscreen();
+        //     shrinkBtn.src = './img/icons/go-fullscreen.svg';
+        //     shrinkBtn.style.filter = 'invert(0%) sepia(6%) saturate(2850%) hue-rotate(60deg) brightness(93%) contrast(104%)';
+        //     shrinkBtn.style.zIndex = '0';
+        //     shrinkBtn.style.position = 'static';
+        // }
     }
 }
 
@@ -159,3 +165,36 @@ window.addEventListener('keyup', (event) => {
             break;
     }
 });
+
+
+function toggleGameAudio(element) {
+    if (element.src.includes("music-muted.svg")) {
+        element.src = "./img/icons/music-toggle.svg";
+        world.character.muted = false;
+        world.level.enemies.map(enemy => {
+            enemy.muted = false;
+        });
+        setInterval(() => {
+            if (world.throwableObjects.length != 0) {
+                world.throwableObjects.map(bottle => {
+                    bottle.muted = false;
+                });
+            }
+        }, 100);
+        world.muted = false;
+    } else {
+        element.src = "./img/icons/music-muted.svg";
+        world.character.muted = true;
+        world.level.enemies.map(enemy => {
+            enemy.muted = true;
+        });
+        setInterval(() => {
+            if (world.throwableObjects.length != 0) {
+                world.throwableObjects.map(bottle => {
+                    bottle.muted = true;
+                });
+            }
+        }, 100);
+        world.muted = true;
+    }
+}

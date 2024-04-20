@@ -19,6 +19,7 @@ class Chicken extends MovableObject {
     }
     dead = false;
     soundPlayed = false;
+    muted;
 
 
     constructor() {
@@ -41,7 +42,7 @@ class Chicken extends MovableObject {
             if (this.dead == true) {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.speed = 0;
-                if (this.soundPlayed == false) {
+                if (this.soundPlayed == false && !this.muted) {
                     this.chicken_sound.play();
                     this.soundPlayed = true;
                 }

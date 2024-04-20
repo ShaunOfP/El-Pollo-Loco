@@ -3,7 +3,7 @@ let game_won = new Audio('./audio/win.mp3');
 
 
 function restart() {
-    window.location.href = "./index.html";
+    window.location.href = "./start-screen.html";
 }
 
 
