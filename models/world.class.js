@@ -18,6 +18,7 @@ class World {
     coin_pickup = new Audio('./audio/coin-pickup.mp3');
     bottle_pickup = new Audio('./audio/bottle-pickup.mp3');
     muted;
+    jumpVelocity;
 
 
     constructor(canvas, keyboard) {
@@ -57,9 +58,10 @@ class World {
      */
     run() {
         setInterval(() => {
+            this.isCharacterJumpingUpOrDown();
             this.checkCollisions();
             this.checkThrowObjects();
-        }, 50);
+        }, 25);
     }
 
 
@@ -101,7 +103,7 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.isCharacterCollidingWithEnemy(enemy)) {
                 if (this.isEnemyNormalChicken(enemy)) {
-                    if (this.isCharacterAboveEnemy(enemy)) {
+                    if (this.isCharacterAboveEnemy(enemy) && this.jumpVelocity == "down") {
                         enemy.dead = true;
                     } else {
                         if (enemy.dead == false) {
@@ -110,7 +112,7 @@ class World {
                     }
                 }
                 if (this.isEnemySmallChicken(enemy)) {
-                    if (this.isCharacterAboveEnemy(enemy)) {
+                    if (this.isCharacterAboveEnemy(enemy) && this.jumpVelocity == "down") {
                         enemy.dead = true;
                     } else {
                         if (enemy.dead == false) {
@@ -152,6 +154,25 @@ class World {
                 this.coinPickedUp(coin);
             }
         });
+    }
+
+
+    /**
+     * Compares the y-coordinates of the character to determine if he is moving up/down or standing
+     */
+    isCharacterJumpingUpOrDown() {
+        let previousY = this.character.y;
+        let newerY;
+        setTimeout(() => {
+            newerY = this.character.y;
+            if (newerY < previousY){
+                this.jumpVelocity = "up";
+            } else if (newerY > previousY){
+                this.jumpVelocity = "down";
+            } else if (newerY == previousY){
+                this.jumpVelocity = "balanced";
+            }
+        }, 50);
     }
 
 
@@ -231,7 +252,7 @@ class World {
      */
     bottlePickedUp(bottle) {
         this.bottleObjects.push(bottle);
-        if (!this.muted){
+        if (!this.muted) {
             this.bottle_pickup.play();
         }
         this.bottleBar.setPercentage(this.bottleObjects.length * 20);
@@ -256,7 +277,7 @@ class World {
      */
     coinPickedUp(coin) {
         this.collectableObjects.push(coin);
-        if (!this.muted){
+        if (!this.muted) {
             this.coin_pickup.play();
         }
         this.coinBar.setPercentage(this.collectableObjects.length * 20);
@@ -470,10 +491,10 @@ class World {
      */
     moveToGameOverScreen() {
         if (this.character.energy == 0) {
-            window.location.href = "./gameover-screen.html";
+            //gameOver
         }
         if (this.endboss.energy == 0) {
-            window.location.href = "./gamewin-screen.html";
+            //gameWin
         }
     }
 }

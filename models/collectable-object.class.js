@@ -4,10 +4,10 @@ class CollectableObject extends MovableObject {
         './img/8_coin/coin_2.png'
     ];
     offset = {
-        top: 50,
-        left: 150,
-        right: -160,
-        bottom: -200
+        top: 60,
+        left: 60,
+        right: 120,
+        bottom: 120
     }
     
     constructor(x){

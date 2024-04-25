@@ -1,15 +1,15 @@
-let counter = 0;
 let game_Theme = new Audio('./audio/main-theme.mp3');
 
 
 function start() {
-    window.location.href = "./index.html";
+    document.getElementById('startScreen').classList.add("d-none");
+    document.getElementById('gameContainer').classList.remove("d-none");
+    init();
 }
 
 
 function toggleAudio(element) {
-    counter++;
-    if (counter % 2) {
+    if (element.src.includes("music-muted.svg")) {
         element.src = "./img/icons/music-toggle.svg";
         game_Theme.play();
     } else {

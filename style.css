@@ -6,6 +6,7 @@
 body {
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     height: 100vh;
     background-image: url('img/game_background/background.png');
@@ -417,4 +418,8 @@ span {
         width: 1200px;
         height: 800px;
     }
+}
+
+#startScreen{
+    justify-content: center;
 }

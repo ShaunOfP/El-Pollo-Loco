@@ -55,12 +55,12 @@ class MovableObject extends DrawableObject {
      *  '../img/path'
      * ]
      */
-    playAnimationOnce(images){
+    playAnimationOnce(images) {
         let i = this.uniqueImage % images.length;
         let path = images[i];
         this.img = this.imageCache[path];
-        
-        if (this.uniqueImage == images.length){
+
+        if (this.uniqueImage == images.length) {
             path = images[images.length - 1];
             this.img = this.imageCache[path];
         } else {
@@ -70,7 +70,7 @@ class MovableObject extends DrawableObject {
 
 
     /**
-     * Animates walking to the right side
+     * Allows the character to move to the right by adding the speed to the x-coordinate
      */
     moveRight() {
         this.x += this.speed;
@@ -86,7 +86,7 @@ class MovableObject extends DrawableObject {
 
 
     /**
-     * Animates a jump
+     * Returns the jump speed
      */
     jump() {
         this.speedY = 30;
@@ -112,8 +112,9 @@ class MovableObject extends DrawableObject {
      * @returns true or false
      */
     isCollidingOnTop(obj) {
-        return (this.y + this.height - this.offset.bottom) && ((this.y + this.height - this.offset.bottom) + (this.x + this.width - this.offset.right))
-        > ((obj.y + obj.offset.top) && (obj.x + obj.width - obj.offset.right));
+        return (this.y + this.height - this.offset.bottom) > (obj.y + obj.offset.top) &&
+            (this.x + this.width - this.offset.right) > (obj.x + obj.offset.left) &&
+            (this.x + this.offset.left) < (obj.x + obj.width - obj.offset.right);
     }
 
 

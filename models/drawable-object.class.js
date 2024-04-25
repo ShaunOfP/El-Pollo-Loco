@@ -40,11 +40,11 @@ class DrawableObject {
      */
     drawFrame(ctx) {
         if (this.isObjectWithHitbox()) {
-            this.debugDrawObjectBox();
+            this.debugDrawObjectBox(ctx);
         }
 
         if (this.isObjectWithHitbox()) {
-            this.debugDrawHitBox();
+            this.debugDrawHitBox(ctx);
         }
     }
 
@@ -61,7 +61,7 @@ class DrawableObject {
     /**
      * Draws the Hitbox of an object onto the canvas
      */
-    debugDrawObjectBox() {
+    debugDrawObjectBox(ctx) {
         ctx.beginPath();
         ctx.lineWidth = '5';
         ctx.strokeStyle = 'blue';
@@ -73,13 +73,17 @@ class DrawableObject {
     /**
      * Draws the actual Hitbox (with offsets) onto the canvas
      */
-    debugDrawHitBox() {
-        ctx.beginPath();
-        ctx.lineWidth = '5';
-        ctx.strokeStyle = 'red';
-        ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width + this.offset.right, this.height + this.offset.bottom);
-        ctx.stroke();
-    }
+    // debugDrawHitBox(ctx) {
+    //     let top = this.y + this.offset.top;
+    //     let bottom = this.height - this.offset.bottom;
+    //     let left = this.x + this.offset.left;
+    //     let right = this.width - this.offset.right;
+    //     ctx.beginPath();
+    //     ctx.lineWidth = '5';
+    //     ctx.strokeStyle = 'red';
+    //     ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
+    //     ctx.stroke();
+    // }
 
 
     /**

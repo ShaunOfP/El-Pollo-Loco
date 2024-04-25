@@ -4,10 +4,10 @@ class Bottle extends MovableObject {
         './img/6_salsa_bottle/2_salsa_bottle_on_ground.png',
     ];
     offset = {
-        top: 10,
-        left: 15,
-        right: -25,
-        bottom: -10
+        top: 0,
+        left: 25,
+        right: 25,
+        bottom: 0
     }
 
     constructor(x) {

@@ -1,15 +1,13 @@
-let counter = 0;
 let game_over = new Audio('./audio/gameover.mp3');
 
 
 function restart() {
-    window.location.href = "./start-screen.html";
+    //d-none removen und hinzufügen
 }
 
 
 function toggleAudio(element){
-    counter++;
-    if (counter % 2){
+    if (element.src.includes("music-muted.svg")){
         element.src = "./img/icons/music-toggle.svg";
         game_over.play();
     } else {

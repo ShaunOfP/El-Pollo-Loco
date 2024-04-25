@@ -63,10 +63,10 @@ class Character extends MovableObject {
     hurt_sound = new Audio('./audio/hurt.mp3');
     death_sound = new Audio('./audio/dead.mp3');
     offset = {
-        top: 80,
-        left: 15,
-        right: -30,
-        bottom: -80
+        top: 85,
+        left: 10,
+        right: 5,
+        bottom: 0
     }
     time_idle = 0;
     soundPlayed = false;
