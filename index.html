@@ -7,7 +7,6 @@
     <title>El Pollo Loco</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="img/icons/favicon.ico">
-    <script src="js/start-screen.js"></script>
     <script src="models/world.class.js"></script>
     <script src="models/drawable-object.class.js"></script>
     <script src="models/movable-object.class.js"></script>
@@ -28,8 +27,6 @@
     <script src="models/chicken-small.class.js"></script>
     <script src="levels/level1.js"></script>
     <script src="js/game.js"></script>
-    <script src="js/gamewin-screen.js"></script>
-    <script src="js/gameover-screen.js"></script>
 </head>
 
 <body id="body" onload="">
@@ -47,7 +44,7 @@
                 <img src='img/9_intro_outro_screens/start/startscreen_1.png'>
             </div>
             <div class="d-flex justify-content-between align-items-center margin-top-5 desktop-hud">
-                <img class="btn-hover height-30 width-30 padding-10" onclick="toggleAudio(this)"
+                <img id="mainMenuMusic" class="btn-hover height-30 width-30 padding-10" onclick="toggleAudio(this)"
                     src="img/icons/music-muted.svg">
                 <button id="startBtn" onclick="start()">Start</button>
                 <div class="flex-column align-items-center">
@@ -101,7 +98,7 @@
                 <img src='img/5_background/first_half_background.png'>
             </div>
             <div class="d-flex justify-content-between align-items-center margin-top-5 desktop-hud">
-                <img class="btn-hover height-30 width-30 padding-10" onclick="toggleAudio(this)"
+                <img id="winMusic" class="btn-hover height-30 width-30 padding-10" onclick="toggleAudio(this)"
                     src="img/icons/music-muted.svg">
                 <button class="restartBtn" onclick="restart()">Restart</button>
                 <div class="invisible"> </div>
@@ -121,7 +118,7 @@
                 <img src='img/9_intro_outro_screens/game_over/game over!.png'>
             </div>
             <div class="d-flex justify-content-between align-items-center margin-top-5 desktop-hud">
-                <img class="btn-hover height-30 width-30 padding-10" onclick="toggleAudio(this)"
+                <img id="loseMusic" class="btn-hover height-30 width-30 padding-10" onclick="toggleAudio(this)"
                     src="img/icons/music-muted.svg">
                 <button class="restartBtn" onclick="restart()">Restart</button>
                 <div class="invisible"> </div>

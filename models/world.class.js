@@ -165,11 +165,11 @@ class World {
         let newerY;
         setTimeout(() => {
             newerY = this.character.y;
-            if (newerY < previousY){
+            if (newerY < previousY) {
                 this.jumpVelocity = "up";
-            } else if (newerY > previousY){
+            } else if (newerY > previousY) {
                 this.jumpVelocity = "down";
-            } else if (newerY == previousY){
+            } else if (newerY == previousY) {
                 this.jumpVelocity = "balanced";
             }
         }, 50);
@@ -491,10 +491,10 @@ class World {
      */
     moveToGameOverScreen() {
         if (this.character.energy == 0) {
-            //gameOver
+            initLose();
         }
         if (this.endboss.energy == 0) {
-            //gameWin
+            initWin();
         }
     }
 }

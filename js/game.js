@@ -3,12 +3,78 @@ let world;
 let keyboard = new Keyboard();
 let counter = 0;
 let muteInterval;
+let game_Theme = new Audio('./audio/main-theme.mp3');
+let game_won = new Audio('./audio/win.mp3');
+let game_over = new Audio('./audio/gameover.mp3');
+
+
+function start() {
+    document.getElementById('startScreen').classList.add("d-none");
+    document.getElementById('gameContainer').classList.remove("d-none");
+    init();
+}
 
 
 function init() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+}
+
+
+function initWin() {
+    document.getElementById('gameContainer').classList.add("d-none");
+    document.getElementById('gameWin').classList.remove("d-none");
+}
+
+
+function initLose() {
+    document.getElementById('gameContainer').classList.add("d-none");
+    document.getElementById('gameLose').classList.remove("d-none");
+}
+
+
+function restart() {
+    document.getElementById('gameWin').classList.add("d-none");
+    document.getElementById('gameLose').classList.add("d-none");
+    document.getElementById('startScreen').classList.remove("d-none");
+}
+
+
+function toggleAudio(element) {
+    if (element.src.includes("music-muted.svg")) {
+        element.src = "./img/icons/music-toggle.svg";
+        switch (element.id) {
+            case "mainMenuMusic":
+                game_Theme.play();
+                break;
+            case "winMusic":
+                game_won.play();
+                break;
+            case "loseMusic":
+                game_over.play();
+                break;
+        }
+    } else {
+        element.src = "./img/icons/music-muted.svg";
+        switch (element.id) {
+            case "mainMenuMusic":
+                game_Theme.pause();
+                break;
+            case "winMusic":
+                game_won.pause();
+                break;
+            case "loseMusic":
+                game_over.pause();
+                break;
+        }
+    }
+}
+
+
+function toggleMobileGTC() {
+    let menu = document.getElementById('mobileGTCToggle');
+    menu.classList.toggle('d-none');
 }
 
 
