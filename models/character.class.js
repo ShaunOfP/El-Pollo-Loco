@@ -71,7 +71,7 @@ class Character extends MovableObject {
     time_idle = 0;
     soundPlayed = false;
     muted;
-    
+
 
     constructor() {
         super().loadImage('./img/2_character_pepe/2_walk/W-21.png');
@@ -108,7 +108,7 @@ class Character extends MovableObject {
 
         setInterval(() => {
             this.hurt_sound.pause();
-            this.characterHealthStatus();
+            this.characterAnimations();
         }, 50);
     }
 
@@ -128,7 +128,7 @@ class Character extends MovableObject {
     moveCharacterRight() {
         this.moveRight();
         this.otherDirection = false;
-        if (!this.muted){
+        if (!this.muted) {
             this.walking_sound.play();
         }
     }
@@ -149,7 +149,7 @@ class Character extends MovableObject {
     moveCharacterLeft() {
         this.moveLeft();
         this.otherDirection = true;
-        if (!this.muted){
+        if (!this.muted) {
             this.walking_sound.play();
         }
     }
@@ -167,12 +167,32 @@ class Character extends MovableObject {
     /**
      * Animates the different actions when the players health status changes
      */
-    characterHealthStatus() {
+    characterAnimations() {
         if (this.isDead()) {
             this.characterDead();
         } else if (this.isHurt()) {
             this.characterHurt();
         } else if (this.isAboveGround()) {
+            if (this.y >= 160) {
+                this.currentImage = 9;
+            } else {
+                switch (Math.sign(this.speedY)) {
+                    case 1:
+                        if (this.currentImage >= 5) {
+                            this.currentImage = 5;
+                        }
+                        break;
+                    case 0:
+                        this.currentImage = 5;
+                        break;
+                    case -1:
+                        if (this.currentImage >= 7) {
+                            this.currentImage = 7;
+                        }
+                        break;
+                }
+            }
+
             this.playAnimation(this.IMAGES_JUMPING);
         } else {
             if (world.keyboard.RIGHT || world.keyboard.LEFT) {
@@ -203,7 +223,7 @@ class Character extends MovableObject {
      */
     characterHurt() {
         this.playAnimation(this.IMAGES_HURT);
-        if (!this.muted){
+        if (!this.muted) {
             this.hurt_sound.play();
         }
     }

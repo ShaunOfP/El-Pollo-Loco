@@ -102,45 +102,11 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.isCharacterCollidingWithEnemy(enemy)) {
-                if (this.isEnemyNormalChicken(enemy)) {
-                    if (this.isCharacterAboveEnemy(enemy) && this.jumpVelocity == "down") {
-                        enemy.dead = true;
-                    } else {
-                        if (enemy.dead == false) {
-                            this.characterTakesDamage(10);
-                        }
-                    }
-                }
-                if (this.isEnemySmallChicken(enemy)) {
-                    if (this.isCharacterAboveEnemy(enemy) && this.jumpVelocity == "down") {
-                        enemy.dead = true;
-                    } else {
-                        if (enemy.dead == false) {
-                            this.characterTakesDamage(5);
-                        }
-                    }
-                }
-                if (this.isEnemyBoss(enemy)) {
-                    this.endbossAttack();
-                }
+                this.checkNormalChickenCollision(enemy);
+                this.checkSmallChickenCollision(enemy);
+                this.checkBossCollision(enemy);
             }
-
-            if (this.areBottlesAvailable()) {
-                this.throwableObjects.forEach(object => {
-                    if (this.isBottleOutOfMap(object)) {
-                        this.removeBottle(object);
-                    }
-
-                    if (this.isBottleHittingEnemy(object, enemy)) {
-                        if (this.isEnemyBoss(enemy)) {
-                            this.endbossDamaged(object);
-                        } else if (this.isEnemyHitted(enemy)) {
-                            this.enemyDead(enemy, object);
-                        }
-                        this.throwActive = false;
-                    }
-                });
-            }
+            this.checkBottleCollision(enemy);
         });
 
         this.level.bottles.forEach(bottle => {
@@ -154,6 +120,74 @@ class World {
                 this.coinPickedUp(coin);
             }
         });
+    }
+
+
+    /**
+     * Looks for a collision with a normal Chicken
+     * @param {object} enemy 
+     */
+    checkNormalChickenCollision(enemy){
+        if (this.isEnemyNormalChicken(enemy)) {
+            if (this.isCharacterAboveEnemy(enemy) && this.jumpVelocity == "down") {
+                enemy.dead = true;
+            } else {
+                if (enemy.dead == false) {
+                    this.characterTakesDamage(10);
+                }
+            }
+        }
+    }
+
+
+    /**
+     * Looks for a collision with a small Chicken
+     * @param {object} enemy 
+     */
+    checkSmallChickenCollision(enemy){
+        if (this.isEnemySmallChicken(enemy)) {
+            if (this.isCharacterAboveEnemy(enemy) && this.jumpVelocity == "down") {
+                enemy.dead = true;
+            } else {
+                if (enemy.dead == false) {
+                    this.characterTakesDamage(5);
+                }
+            }
+        }
+    }
+
+
+    /**
+     * Looks for a collision with a Boss Chicken
+     * @param {object} enemy 
+     */
+    checkBossCollision(enemy){
+        if (this.isEnemyBoss(enemy)) {
+            this.endbossAttack();
+        }
+    }
+
+
+    /**
+     * Looks for a bottle colliding with an enemy
+     * @param {object} enemy 
+     */
+    checkBottleCollision(enemy){
+        if (this.areBottlesAvailable()) {
+            this.throwableObjects.forEach(object => {
+                if (this.isBottleOutOfMap(object)) {
+                    this.removeBottle(object);
+                }
+                if (this.isBottleHittingEnemy(object, enemy)) {
+                    if (this.isEnemyBoss(enemy)) {
+                        this.endbossDamaged(object);
+                    } else if (this.isEnemyHitted(enemy)) {
+                        this.enemyDead(enemy, object);
+                    }
+                    this.throwActive = false;
+                }
+            });
+        }
     }
 
 
