@@ -79,6 +79,7 @@ function toggleMobileGTC() {
 
 
 window.addEventListener('touchstart', e => {
+    e.defaultPrevented = true;
     if (e.target instanceof HTMLImageElement) {
         switch (e.target.parentElement.id) {
             case ("mobileLeft"):

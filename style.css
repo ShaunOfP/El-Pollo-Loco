@@ -423,3 +423,13 @@ span {
 #startScreen{
     justify-content: center;
 }
+
+@media (max-height: 810px){
+    h1{
+        margin: 20px;
+    }
+}
+
+@media (max-height: 730px){
+    /* Desktop-controls-menu als button machen wenn feedback das sagt */
+}
