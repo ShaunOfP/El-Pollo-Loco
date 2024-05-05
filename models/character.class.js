@@ -177,25 +177,7 @@ class Character extends MovableObject {
         } else if (this.isHurt()) {
             this.characterHurt();
         } else if (this.isAboveGround()) {
-            if (this.y >= 160) {
-                this.currentImage = 9;
-            } else {
-                switch (Math.sign(this.speedY)) {
-                    case 1:
-                        if (this.currentImage >= 5) {
-                            this.currentImage = 5;
-                        }
-                        break;
-                    case 0:
-                        this.currentImage = 5;
-                        break;
-                    case -1:
-                        if (this.currentImage >= 7) {
-                            this.currentImage = 7;
-                        }
-                        break;
-                }
-            }
+            this.processJumpStateImages();
             this.playAnimation(this.IMAGES_JUMPING);
         } else {
             if (world.keyboard.RIGHT || world.keyboard.LEFT) {
@@ -233,11 +215,33 @@ class Character extends MovableObject {
 
 
     /**
+     * Manipulates the Animation by overwriting the currentImage of the playAnimation based on the State of the Jump
+     */
+    processJumpStateImages(){
+        switch (Math.sign(this.speedY)) {
+            case 1:
+                if (this.currentImage >= 5) {
+                    this.currentImage = 5;
+                }
+                break;
+            case 0:
+                this.currentImage = 5;
+                break;
+            case -1:
+                if (this.currentImage >= 7) {
+                    this.currentImage = 7;
+                }
+                break;
+        }
+    }
+
+
+    /**
      * Animates the Idle-Animation of the character
      */
     characterIdleAnimations() {
         this.countUp();
-        if (this.time_idle < 20){
+        if (this.time_idle < 20) {
             this.playAnimation(this.IMAGES_STANDING);
         }
         if (this.time_idle > 80) {
