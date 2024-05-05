@@ -59,6 +59,9 @@ class Character extends MovableObject {
         './img/2_character_pepe/1_idle/long_idle/I-19.png',
         './img/2_character_pepe/1_idle/long_idle/I-20.png'
     ];
+    IMAGES_STANDING = [
+        './img/2_character_pepe/1_idle/idle/I-1.png'
+    ];
     walking_sound = new Audio('./audio/walking.mp3');
     hurt_sound = new Audio('./audio/hurt.mp3');
     death_sound = new Audio('./audio/dead.mp3');
@@ -81,6 +84,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_LONG_IDLE);
+        this.loadImages(this.IMAGES_STANDING);
         this.applyGravity();
         this.animate();
     }
@@ -192,7 +196,6 @@ class Character extends MovableObject {
                         break;
                 }
             }
-
             this.playAnimation(this.IMAGES_JUMPING);
         } else {
             if (world.keyboard.RIGHT || world.keyboard.LEFT) {
@@ -234,6 +237,9 @@ class Character extends MovableObject {
      */
     characterIdleAnimations() {
         this.countUp();
+        if (this.time_idle < 20){
+            this.playAnimation(this.IMAGES_STANDING);
+        }
         if (this.time_idle > 80) {
             this.playAnimation(this.IMAGES_LONG_IDLE);
         }
