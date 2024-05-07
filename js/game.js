@@ -78,77 +78,6 @@ function toggleMobileGTC() {
 }
 
 
-window.addEventListener('touchstart', e => {
-    e.defaultPrevented = true;
-    if (e.target instanceof HTMLImageElement) {
-        switch (e.target.parentElement.id) {
-            case ("mobileLeft"):
-                keyboard.LEFT = true;
-                break;
-            case ("mobileRight"):
-                keyboard.RIGHT = true;
-                break;
-            case ("mobileJump"):
-                keyboard.SPACE = true;
-                break;
-            case ("mobileThrow"):
-                keyboard.THROW = true;
-                break;
-
-        }
-    }
-    switch (e.target.id) {
-        case ("mobileLeft"):
-            keyboard.LEFT = true;
-            break;
-        case ("mobileRight"):
-            keyboard.RIGHT = true;
-            break;
-        case ("mobileJump"):
-            keyboard.SPACE = true;
-            break;
-        case ("mobileThrow"):
-            keyboard.THROW = true;
-            break;
-    }
-});
-
-
-window.addEventListener('touchend', e => {
-    if (e.target instanceof HTMLImageElement) {
-        switch (e.target.parentElement.id) {
-            case ("mobileLeft"):
-                keyboard.LEFT = false;
-                break;
-            case ("mobileRight"):
-                keyboard.RIGHT = false;
-                break;
-            case ("mobileJump"):
-                keyboard.SPACE = false;
-                break;
-            case ("mobileThrow"):
-                keyboard.THROW = false;
-                break;
-
-        }
-    }
-    switch (e.target.id) {
-        case ("mobileLeft"):
-            keyboard.LEFT = false;
-            break;
-        case ("mobileRight"):
-            keyboard.RIGHT = false;
-            break;
-        case ("mobileJump"):
-            keyboard.SPACE = false;
-            break;
-        case ("mobileThrow"):
-            keyboard.THROW = false;
-            break;
-    }
-});
-
-
 function toggleFullscreen() {
     counter++;
     let game = document.getElementById('canvas');
@@ -167,6 +96,49 @@ function toggleFullscreen() {
             counter = 0;
         }
     }
+}
+
+
+function bindMobileButtonTouchEvents(){
+    document.getElementById('mobileLeft').addEventListener('touchstart', e => {
+        e.preventDefault();
+        keyboard.LEFT = true;
+    });
+
+    document.getElementById('mobileLeft').addEventListener('touchend', e => {
+        e.preventDefault();
+        keyboard.LEFT = false;
+    });
+
+    document.getElementById('mobileRight').addEventListener('touchstart', e => {
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    });
+
+    document.getElementById('mobileRight').addEventListener('touchend', e => {
+        e.preventDefault();
+        keyboard.RIGHT = false;
+    });
+
+    document.getElementById('mobileJump').addEventListener('touchstart', e => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    });
+
+    document.getElementById('mobileJump').addEventListener('touchend', e => {
+        e.preventDefault();
+        keyboard.SPACE = false;
+    });
+
+    document.getElementById('mobileThrow').addEventListener('touchstart', e => {
+        e.preventDefault();
+        keyboard.THROW = true;
+    });
+
+    document.getElementById('mobileThrow').addEventListener('touchend', e => {
+        e.preventDefault();
+        keyboard.THROW = false;
+    });
 }
 
 
