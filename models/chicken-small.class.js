@@ -17,7 +17,7 @@ class ChickenSmall extends MovableObject {
         bottom: 0
     }
     dead = false;
-    smallchicken_audio = new Audio('./audio/small-chicken.mp3'); // audio 
+    smallchicken_audio = new Audio('./audio/small-chicken.mp3');
     soundPlayed = false;
     muted;
 

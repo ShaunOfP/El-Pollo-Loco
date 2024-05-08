@@ -106,7 +106,7 @@ class Endboss extends MovableObject {
             if (world.character.x < this.x && this.hadFirstContact){
                 this.moveLeft();
             } else if (world.character.x > this.x){
-                this.moveRight(); // läuft noch nicht nach rechts
+                this.moveRight();
             }
         }
     }

@@ -10,8 +10,8 @@ class DrawableObject {
     offset = {
         top: 0,
         left: 0,
-        right: 0,  //doppelter negativer wert von left (um viereck zu machen)
-        bottom: 0  //doppelter negativer wert von top (um viereck zu machen)
+        right: 0,
+        bottom: 0
     }
 
 
@@ -68,22 +68,6 @@ class DrawableObject {
         ctx.rect(this.x, this.y, this.width, this.height);
         ctx.stroke();
     }
-
-
-    /**
-     * Draws the actual Hitbox (with offsets) onto the canvas
-     */
-    // debugDrawHitBox(ctx) {
-    //     let top = this.y + this.offset.top;
-    //     let bottom = this.height - this.offset.bottom;
-    //     let left = this.x + this.offset.left;
-    //     let right = this.width - this.offset.right;
-    //     ctx.beginPath();
-    //     ctx.lineWidth = '5';
-    //     ctx.strokeStyle = 'red';
-    //     ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
-    //     ctx.stroke();
-    // }
 
 
     /**
