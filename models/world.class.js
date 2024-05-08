@@ -102,9 +102,7 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.isCharacterCollidingWithEnemy(enemy)) {
-                this.checkNormalChickenCollision(enemy);
-                this.checkSmallChickenCollision(enemy);
-                this.checkBossCollision(enemy);
+                this.checkEnemyCollision(enemy);
             }
             this.checkBottleCollision(enemy);
         });
@@ -124,10 +122,21 @@ class World {
 
 
     /**
+     * Calls functions to check which enemy collided with the player
+     * @param {object} enemy 
+     */
+    checkEnemyCollision(enemy) {
+        this.checkNormalChickenCollision(enemy);
+        this.checkSmallChickenCollision(enemy);
+        this.checkBossCollision(enemy);
+    }
+
+
+    /**
      * Looks for a collision with a normal Chicken
      * @param {object} enemy 
      */
-    checkNormalChickenCollision(enemy){
+    checkNormalChickenCollision(enemy) {
         if (this.isEnemyNormalChicken(enemy)) {
             if (this.isCharacterAboveEnemy(enemy) && this.jumpVelocity == "down") {
                 enemy.dead = true;
@@ -144,7 +153,7 @@ class World {
      * Looks for a collision with a small Chicken
      * @param {object} enemy 
      */
-    checkSmallChickenCollision(enemy){
+    checkSmallChickenCollision(enemy) {
         if (this.isEnemySmallChicken(enemy)) {
             if (this.isCharacterAboveEnemy(enemy) && this.jumpVelocity == "down") {
                 enemy.dead = true;
@@ -161,7 +170,7 @@ class World {
      * Looks for a collision with a Boss Chicken
      * @param {object} enemy 
      */
-    checkBossCollision(enemy){
+    checkBossCollision(enemy) {
         if (this.isEnemyBoss(enemy)) {
             this.endbossAttack();
         }
@@ -172,7 +181,7 @@ class World {
      * Looks for a bottle colliding with an enemy
      * @param {object} enemy 
      */
-    checkBottleCollision(enemy){
+    checkBottleCollision(enemy) {
         if (this.areBottlesAvailable()) {
             this.throwableObjects.forEach(object => {
                 if (this.isBottleOutOfMap(object)) {
