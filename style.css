@@ -26,22 +26,6 @@ a:hover {
     transform: scale(1.2);
 }
 
-@media only screen and (max-width: 720px) {
-    canvas {
-        width: 100vw;
-    }
-}
-
-@media only screen and (max-height: 480px) {
-    canvas {
-        height: 100vh;
-    }
-
-    h1 {
-        display: none;
-    }
-}
-
 .height-480 {
     height: 480px;
 }
@@ -328,8 +312,28 @@ span {
     display: none;
 }
 
-.margin-top-3{
+.margin-top-3 {
     margin-top: 3px;
+}
+
+#startScreen {
+    justify-content: center;
+}
+
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100vw;
+    }
+}
+
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+
+    h1 {
+        display: none;
+    }
 }
 
 @media (min-width: 933px) {
@@ -345,24 +349,89 @@ span {
 @media(max-width: 932px) {
     body {
         overflow: hidden;
-        width: 100%;
         justify-content: flex-start;
+    }
+
+    #startScreen {
+        height: 100%;
+        width: 100%;
+    }
+
+    .container {
+        height: 100%;
+        width: 100%;
+    }
+
+    .gameScreen {
+        height: 80svh;
+        display: flex;
+        justify-content: center;
+    }
+
+    .gameScreen img {
+        object-fit: fill;
+        width: 80%;
+    }
+
+    .desktop-hud {
+        display: none;
+    }
+
+    .mobile-hud {
+        display: flex;
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        right: 5px;
+    }
+
+    #gameContainer {
+        height: 100%;
+        width: 100%;
     }
 
     h1 {
         display: none;
     }
 
-    #startScreen {
-        height: 100%;
-        width: 100vw;
+    #canvas {
+        width: 80%;
+        height: 80svh;
     }
 
-    .gameScreen img {
-        height: 88vh;
-        width: 100%;
+    #desktop-hud {
+        display: none !important;
+    }
+
+    #mobile-hud {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        right: 5px;
+    }
+
+    #gameWin {
+        width: 100svw;
+    }
+
+    #gameLose {
+        width: 100svw;
+    }
+
+    .gameOverScreen {
+        height: 80svh;
+        display: flex;
+        justify-content: center;
+    }
+
+    .gameOverScreen img {
+        width: 80%;
         object-fit: fill;
     }
+
+
 
     #ppHeadline {
         display: block;
@@ -372,53 +441,14 @@ span {
         display: block;
     }
 
-    #canvas {
-        width: 100%;
-        height: 88vh;
-    }
 
-    .container {
-        width: 100%;
-    }
 
-    #gameContainer {
-        height: 100vh;
-        width: 100vw;
-    }
 
-    .desktop-hud {
-        display: none;
-    }
 
-    #desktop-hud {
-        display: none !important;
-    }
 
-    .mobile-hud {
-        display: flex;
-    }
 
-    #mobile-hud {
-        margin-top: 3px;
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
 
-    #gameWin{
-        width: 100vw;
-    }
 
-    .gameOverScreen{
-        height: 88vh;
-        width: 100vw;
-    }
-
-    .gameOverScreen img {
-        height: 100%;
-        width: 100%;
-        object-fit: fill;
-    }
 }
 
 @media (max-width: 900px) and (orientation: portrait) {
@@ -449,18 +479,4 @@ span {
         width: 1200px;
         height: 800px;
     }
-}
-
-#startScreen {
-    justify-content: center;
-}
-
-@media (max-height: 810px) {
-    h1 {
-        margin: 20px;
-    }
-}
-
-@media (max-height: 730px) {
-    /* Desktop-controls-menu als button machen wenn feedback das sagt */
 }
