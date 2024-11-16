@@ -431,8 +431,6 @@ span {
         object-fit: fill;
     }
 
-
-
     #ppHeadline {
         display: block;
     }
@@ -440,15 +438,6 @@ span {
     #lnHeader {
         display: block;
     }
-
-
-
-
-
-
-
-
-
 }
 
 @media (max-width: 900px) and (orientation: portrait) {
